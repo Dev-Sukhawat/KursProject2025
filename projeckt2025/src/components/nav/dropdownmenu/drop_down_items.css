@@ -1,0 +1,53 @@
+:root {
+  --links: hsla(216, 100%, 50%);
+  --hover: hsl(0, 0%, 96%);
+  --white: hsl(0, 0%, 100%);
+  --line-break: hsl(0, 0%, 59%);
+}
+
+.login,
+.signup {
+  color: var(--links);
+}
+.submenu-wrapper {
+  .navbar__links > li {
+    border-top: 0.15rem solid var(--line-break);
+    padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+  }
+  .navbar__links > li:not(.external__link):hover {
+    background-color: var(--hover);
+  }
+  .external__link:hover {
+    background-color: var(--hover);
+  }
+}
+
+.external__link > details[open] {
+  background-color: var(--white);
+}
+details[open] {
+  .submenu__topics li:hover,
+  .submenu__category li:hover {
+    background-color: var(--hover);
+  }
+}
+
+.dropdownmenu {
+  a summary {
+    margin-left: 0.25rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  summary:hover {
+    cursor: pointer;
+  }
+  .submenu__topics,
+  .submenu__category {
+    margin-top: 0.5rem;
+    margin-left: 0.5rem;
+  }
+}
+summary::marker {
+  content: "";
+}

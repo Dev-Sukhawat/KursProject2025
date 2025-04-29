@@ -1,120 +1,77 @@
 import React from "react";
 import "./Navbar.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faBars,
-  faUsers,
-  faBookmark,
-  faCartShopping,
-  faMagnifyingGlass,
-} from "@fortawesome/free-solid-svg-icons";
+import NavbarLogo from "./navbarlogo/nav_bar_logo.jsx";
+import Checkbox from "./burgermenu/burgermenu.jsx";
+import Submenu from "./dropdownmenu/drop_down_items.jsx";
+import NavbarBtn from "./navbarbtn/navbarbtn.jsx";
+import { NavbarSearch, MdNavbarSearch } from "./navbar_search/search.jsx";
+import { useState } from "react";
 
 function Navbar() {
+  const [showSubmenu, setShowSubmenu] = useState(false);
+
+  const toggleMenu = () => {
+    setShowSubmenu(!showSubmenu);
+  };
+
   return (
     <>
-      <nav className="navbar mt-2 bg-white shadow-md p-4">
-        <div className="flex w-full justify-arround items-center">
-          <details>
-            <summary className="navbar__title hover:cursor-pointer">
-              <FontAwesomeIcon
-                icon={faBars}
-                className="hamburgarbar text-3xl mx-3"
-              />
-              <p className=" text-lg font-bold">Menu</p>
-            </summary>
-            <ul className="navbar__links grid absoulte">
-              <li>
-                <a href="#home" className="navbar__link">
-                  Home
-                </a>
-              </li>
-              <li>
-                <a href="#topics" className="navbar__link">
-                  Topics
-                </a>
-              </li>
-              <li>
-                <a href="#category" className="navbar__link">
-                  Category
-                </a>
-              </li>
-              <li>
-                <a href="#whatMetalMorph" className="navbar__link">
-                  What’s a MetalMorph
-                </a>
-              </li>
-              <li>
-                <a href="#members" className="navbar__link">
-                  MetalMorph Members
-                </a>
-              </li>
-              <li>
-                <a href="#support" className="navbar__link">
-                  Support
-                </a>
-              </li>
-              <li>
-                <a href="#about" className="navbar__link">
-                  About
-                </a>
-              </li>
-              <li>
-                <a href="#sell" className="navbar__link">
-                  Sell your art
-                </a>
-              </li>
-            </ul>
-          </details>
-          <div className="navbar__logo size-25">
-            <img
-              src="/img/MetalmorphLogo.png"
-              alt="Metalmorph Logo"
-              className="Metalmorph Logo size-auto"
-            />
-          </div>
-          <div className="navbar__top__treBtn flex gap-5">
-            <a href="#join-us" className="navbar__icon-link">
-              <FontAwesomeIcon
-                icon={faUsers}
-                className="navbar__icon text-2xl"
-              />
-              <br />
-              <span className="navbar__icon-text">Join</span>
-            </a>
-            <a href="#like" className="navbar__icon-link">
-              <FontAwesomeIcon
-                icon={faBookmark}
-                className="navbar__icon text-2xl"
-              />
-              <br />
-              <span className="navbar__icon-text">Like</span>
-            </a>
-            <a href="#cart" className="navbar__icon-link">
-              <FontAwesomeIcon
-                icon={faCartShopping}
-                className="navbar__icon text-2xl"
-              />
-              <br />
-              <span className="navbar__icon-text">Cart</span>
-            </a>
-          </div>
+      <nav className="navbar md:hidden mt-1 bg-white shadow-md p-2 ">
+        <div className="flex w-full justify-between items-center md:hidden">
+          <Checkbox onClick={toggleMenu} />
+          {showSubmenu && <Submenu />}
+          <NavbarLogo />
+          <NavbarBtn />
         </div>
-        <div className="navbar__search">
-          <input
-            type="serch"
-            name="search"
-            id="search"
-            aria-label="Search"
-            placeholder="Search for..."
-            className="navbar__search-input"
-          />
-          <button className="navbar__search-button">
-            <FontAwesomeIcon icon={faMagnifyingGlass} />
-          </button>
+        <NavbarSearch />
+      </nav>
+      <nav className="navbar hidden md:block shadow-md md:mt-2 md:p-4 lg:mt-3 lg:p-6 flex gap-2 md:gap-4 lg:gap-6 ">
+        <div className="hidden md:flex w-full  justify-between items-center ">
+          <Checkbox onClick={toggleMenu} />
+          {showSubmenu && <Submenu />}
+          <NavbarLogo />
+          <MdNavbarSearch />
+          <NavbarBtn />
         </div>
       </nav>
     </>
   );
 }
+
+// function Navbar() {
+//   const [showSubmenu, setShowSubmenu] = useState(false);
+
+//   const toggleMenu = () => {
+//     setShowSubmenu(!showSubmenu);
+//   };
+
+//   return (
+//     <nav className="navbar mt-1 bg-white shadow-md p-2 md:mt-2 md:p-4 lg:mt-3 lg:p-6 flex flex-col gap-2 md:gap-4 lg:gap-6">
+//       {/* Första raden: Logo + Sök + Knapp (i rad på md och uppåt) */}
+//       <div className="flex w-full justify-between items-center flex-col md:flex-row md:gap-4">
+//         <div className="flex w-full items-center justify-between">
+//           <Checkbox onClick={toggleMenu} />
+//           {showSubmenu && <Submenu />}
+//           <div className="md:hidden">
+//             <NavbarLogo />
+//             <NavbarBtn />
+//           </div>
+//         </div>
+
+//         {/* Wrapper för Logo, Sök och Btn på md+ */}
+//         <div className="hidden md:flex w-full items-center justify-between gap-4">
+//           <NavbarLogo />
+//           <NavbarSearch />
+//           <NavbarBtn />
+//         </div>
+//       </div>
+
+//       {/* Visa sökfältet separat på mobil (där ovan är gömd) */}
+//       <div className="block md:hidden">
+//         <NavbarSearch />
+//       </div>
+//     </nav>
+//   );
+// }
 
 export default Navbar;
