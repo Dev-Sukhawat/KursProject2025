@@ -18,16 +18,16 @@ function Submenu() {
   ];
 
   return (
-    <div className="submenu-wrapper absolute z-100 size-full top-30 left-0 bg-white  shadow-md md:text-lg">
-      <div className="text-red flex items-center justify-center gap-2 mb-2 text-xl">
+    <div className="submenu-wrapper absolute z-100 size-full top-30 left-0 bg-white  shadow-md sm:top-33 lg:top-40 md:text-lg md:mt-3 lg:mt-4">
+      <div className="text-red flex items-center justify-center gap-2 mb-2 text-xl ">
         <h1>
-          <Link className="login" to="login">
+          <Link to="/login" className="login">
             Log In
           </Link>
         </h1>
         <h1>or</h1>
         <h1>
-          <Link className="signup" to="signup">
+          <Link to="/signup" className="signup">
             Sign Up
           </Link>
         </h1>
@@ -38,13 +38,18 @@ function Submenu() {
             Home
           </Link>
         </li>
-        <li className="external__link">
-          <details className="dropdownmenu menu1 ">
-            <summary className="heading__dropdownmenu">
-              Topics
-              <FontAwesomeIcon icon={faChevronRight} className="mr-3" />
+        <li className="external__link ml-2">
+          <details className="dropdownmenu menu1 group">
+            <summary className="heading__dropdownmenu ">
+              <div className="flex w-[98%] items-center justify-between ">
+                <span>Topics</span>
+                <FontAwesomeIcon
+                  icon={faChevronRight}
+                  className="transition-transform duration-300 group-open:rotate-90"
+                />
+              </div>
             </summary>
-            <ul className="submenu__topics grid gap-2">
+            <ul className="submenu__topics grid gap-2 w-[98%]">
               {topicslistboarditem.map((item) => (
                 <li key={item.id}>
                   <Link to={`/topics/${item.list.replace(/\s+/g, "")}`}>
@@ -55,13 +60,18 @@ function Submenu() {
             </ul>
           </details>
         </li>
-        <li className="external__link">
-          <details className="dropdownmenu menu2">
+        <li className="external__link ml-2">
+          <details className="dropdownmenu menu2 group">
             <summary className="heading__dropdownmenu">
-              Category
-              <FontAwesomeIcon icon={faChevronRight} className="mr-3" />
+              <div className="flex w-[98%] items-center justify-between ">
+                <span>Category</span>
+                <FontAwesomeIcon
+                  icon={faChevronRight}
+                  className="transition-transform duration-300 group-open:rotate-90"
+                />
+              </div>
             </summary>
-            <ul className="submenu__category grid gap-2">
+            <ul className="submenu__category grid gap-2 w-[98%]">
               {categoryslistboarditem.map((item) => (
                 <li key={item.id}>
                   <Link to={`/category/${item.list.replace(/\s+/g, "")}`}>

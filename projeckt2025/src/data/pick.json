@@ -1,0 +1,62 @@
+[
+  {
+    "name": "Nature",
+    "count": 135,
+    "image": "https://img.freepik.com/free-photo/field-landscape-day-time_23-2150724911.jpg?uid=R164750344&ga=GA1.1.814794073.1727081823&semt=ais_hybrid&w=740"
+  },
+  {
+    "name": "Fantasy",
+    "count": 250,
+    "image": "https://images.unsplash.com/photo-1574244931790-ee19df716899?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fGZhbnRhc3l8ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "Animal",
+    "count": 454,
+    "image": "https://images.unsplash.com/flagged/photo-1591475791029-f9efe6297456?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTIxfHxhbmltYWxzfGVufDB8fDB8fHwy"
+  },
+  {
+    "name": "Cars",
+    "count": 560,
+    "image": "https://img.freepik.com/free-photo/night-drive-supercar_23-2151955623.jpg?uid=R164750344&ga=GA1.1.814794073.1727081823&semt=ais_hybrid&w=740"
+  },
+  {
+    "name": "Anime",
+    "count": 246,
+    "image": "https://img.freepik.com/free-photo/anime-night-sky-illustration_23-2151684330.jpg?uid=R164750344&ga=GA1.1.814794073.1727081823&semt=ais_hybrid&w=740"
+  },
+  {
+    "name": "Comics",
+    "count": 350,
+    "image": "https://images.unsplash.com/photo-1588497859490-85d1c17db96d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Q29taWNzfGVufDB8fDB8fHwy"
+  },
+  {
+    "name": "Movies",
+    "count": 454,
+    "image": "https://img.freepik.com/free-photo/women-discussing-film-performance_23-2147803846.jpg?uid=R164750344&ga=GA1.1.814794073.1727081823&semt=ais_hybrid&w=740"
+  },
+  {
+    "name": "Maps",
+    "count": 860,
+    "image": "https://images.unsplash.com/photo-1553864250-05b20249ee0c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fE1hcHN8ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "Space",
+    "count": 190,
+    "image": "https://images.unsplash.com/photo-1541873676-a18131494184?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8U3BhY2V8ZW58MHx8MHx8fDI%3D"
+  },
+  {
+    "name": "Architecture",
+    "count": 312,
+    "image": "https://images.unsplash.com/photo-1451976426598-a7593bd6d0b2?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fEFyY2hpdGVjdHVyZXxlbnwwfHwwfHx8Mg%3D%3D"
+  },
+  {
+    "name": "Landscape",
+    "count": 856,
+    "image": "https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8TGFuZHNjYXBlfGVufDB8fDB8fHwy"
+  },
+  {
+    "name": "Science",
+    "count": 349,
+    "image": "https://images.unsplash.com/photo-1607988795691-3d0147b43231?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTA2fHxTY2llbmNlfGVufDB8fDB8fHwy"
+  }
+]

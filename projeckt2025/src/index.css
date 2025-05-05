@@ -3,4 +3,8 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  --links: hsla(216, 100%, 50%);
+  --hover: hsl(0, 0%, 96%);
+  --white: hsl(0, 0%, 100%);
+  --line-break: hsl(0, 0%, 59%);
 }

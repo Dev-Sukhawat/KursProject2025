@@ -4,8 +4,11 @@ import styled from "styled-components";
 function Checkbox({ onClick }) {
   return (
     <StyledWrapper>
-      <div className="navbar__burgermenu hover:cursor-pointer">
-        <label className="burger" htmlFor="burger">
+      <div className="navbar__burgermenu grid justify-items-center lg:justify-start lg:ml-5 ">
+        <label
+          className="burger hover:cursor-pointer items-center"
+          htmlFor="burger"
+        >
           <input
             type="checkbox"
             id="burger"
@@ -23,10 +26,6 @@ function Checkbox({ onClick }) {
 }
 
 const StyledWrapper = styled.div`
-  .navbar__burgermenu {
-    display: grid;
-    justify-items: center;
-  }
   .burger {
     position: relative;
     width: 40px;
