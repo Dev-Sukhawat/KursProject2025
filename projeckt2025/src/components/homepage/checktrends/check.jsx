@@ -97,10 +97,10 @@ export default function Check() {
           </div>
         </div>
       </div>
-      <span className="flex flex-col items-center">
+      <span className="flex flex-col items-center md:mt-5">
         <Link
           to="/morph"
-          className=" rounded-xl border-2 font-semibold text-sm md:text-xl text-center hover:hover:shadow-[0px_0px_5px_1px_rgba(34,167,197,0.75)] text-blue-600 mb-4 cursor-pointer p-2 hover:underline"
+          className=" rounded-xl border-2 font-semibold text-sm md:text-xl text-center hover:shadow-[0px_0px_5px_1px_rgba(34,167,197,0.75)] text-blue-600 mb-4 cursor-pointer p-2 hover:underline"
         >
           See more
         </Link>
