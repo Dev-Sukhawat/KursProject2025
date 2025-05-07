@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Yourstyle() {
   return (
@@ -39,9 +40,11 @@ export default function Yourstyle() {
           className="col-span-1 row-span-2 w-full h-full object-cover rounded-lg shadow-md"
         />
         <div className="col-span-2 mt-4  md:mt-10 md:justify-items-center ">
-          <p className="bg-white px-4 py-1 rounded-full border-2 border-blue-600 text-blue-600 font-medium hover:bg-blue-600 hover:text-white transition  md:text-2xl md:font-semibold md:w-[80%]">
-            Try It
-          </p>
+            <Link to="/underdeveloped">
+            <p className="bg-white px-4 py-1 rounded-full border-2 border-blue-600 text-blue-600 font-medium hover:bg-blue-600 hover:text-white transition  md:text-2xl md:font-semibold">
+              Try It
+            </p>
+          </Link>
         </div>
       </div>
     </section>
