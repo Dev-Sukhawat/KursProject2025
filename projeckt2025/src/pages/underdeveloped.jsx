@@ -1,19 +1,28 @@
 import React from "react";
 import styled from "styled-components";
 import Navbar from "../components/nav/navbar";
+import { Link } from "react-router-dom";
+import Footer from "../components/footer/footer";
 export default function Underdeveloped() {
   return (
     <section>
       <Navbar />
-      <div className="w-full justify-items-center mt-15 ">
+      <div className="w-full justify-items-center mt-15 h-screen ">
         <Loader />
         <div className="text-center">
           <h1 className=" text-2xl font-semibold">Underdeveloped Section</h1>
           <h2 className="text-xl italic justify-center ">
             Come back later in the future
           </h2>
+          <Link
+            to="/"
+            className="flex  items-center gap-2 px-4 py-2 border rounded-full bg-[hsla(216,100%,50%,1)] text-white font-bold hover:bg-white hover:text-[hsla(216,100%,50%,1)] transition justify-center w-100 ;"
+          >
+            Go back home
+          </Link>
         </div>
       </div>
+      <Footer />
     </section>
   );
 }

@@ -2,12 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Navbar from "../components/nav/navbar";
+import Footer from "../components/footer/footer";
 
 const NoPage = () => {
   return (
     <>
       <Navbar />
-      <StyledWrapper>
+      <StyledWrapper className="h-screen">
         <div className="main_wrapper">
           <div className="main">
             <div className="antenna">
@@ -88,6 +89,7 @@ const NoPage = () => {
           </Link>
         </div>
       </StyledWrapper>
+      <Footer />
     </>
   );
 };
