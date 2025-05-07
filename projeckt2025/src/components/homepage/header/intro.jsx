@@ -1,5 +1,5 @@
 import React from "react";
-import Video from "../../assets/video/intro.mp4";
+import Video from "../../../assets/video/intro.mp4";
 import { useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faVolumeXmark, faVolumeHigh } from "@fortawesome/free-solid-svg-icons";

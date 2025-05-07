@@ -1,6 +1,6 @@
 import React from "react";
 import Navbar from "../components/nav/navbar";
-import Intro from "../components/header/intro";
+import Intro from "../components/homepage/header/intro";
 import Announcement from "../components/homepage/announcement/announcement";
 import Pick from "../components/homepage/pickcategory/pick";
 import Check from "../components/homepage/checktrends/check";
