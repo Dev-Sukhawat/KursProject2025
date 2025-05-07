@@ -7,7 +7,7 @@ import NavbarBtn from "./navbarbtn/navbarbtn.jsx";
 import { NavbarSearch } from "./navbar_search/search.jsx";
 import { useState } from "react";
 
-function Navbar() {
+export default function Navbar() {
   const [showSubmenu, setShowSubmenu] = useState(false);
 
   const toggleMenu = () => {
@@ -36,5 +36,24 @@ function Navbar() {
     </section>
   );
 }
+export function BuyNavbar() {
+  const [showSubmenu, setShowSubmenu] = useState(false);
 
-export default Navbar;
+  const toggleMenu = () => {
+    setShowSubmenu(!showSubmenu);
+  };
+
+  return (
+    <section className="navbar-container">
+      <nav className="navbar mt-1 bg-white shadow-md p-2 ">
+        <div className="flex w-full justify-between items-center">
+          <Checkbox onClick={toggleMenu} />
+          {showSubmenu && <Submenu />}
+          <NavbarLogo />
+          <NavbarBtn />
+        </div>
+      </nav>
+    </section>
+  );
+}
+
