@@ -1,10 +1,16 @@
 import React from "react";
-import Navbar from "../components/nav/navbar";
+import { BuyNavbar } from "../components/nav/navbar";
+import Buylist from "../components/cartpage/Buylist";
+
+import Footer from "../components/footer/footer";
 
 function cart() {
   return (
     <>
-      <Navbar />
+      <BuyNavbar />
+      <Buylist />
+
+      <Footer />
     </>
   );
 }
