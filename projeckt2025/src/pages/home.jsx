@@ -7,6 +7,7 @@ import Check from "../components/homepage/checktrends/check";
 import Yourstyle from "../components/homepage/your/yourstyle";
 import Delivery from "../components/homepage/delivery/delivery";
 import Payment from "../components/homepage/payment/pay";
+import Footer from "../components/footer/footer";
 
 function home() {
   return (
@@ -19,6 +20,7 @@ function home() {
       <Yourstyle />
       <Delivery />
       <Payment />
+      <Footer />
     </>
   );
 }
