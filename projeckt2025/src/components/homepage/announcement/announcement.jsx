@@ -19,7 +19,7 @@ export default function announcement() {
             key={item.id}
             class="grid grid-cols-2 w-[100%] md:h-auto gap-1 md:gap-6 items-center bg-white p-2 md:p-6 rounded-md shadow-md hover:shadow-lg transition duration-300 ease-in-out"
           >
-            <div className="">
+            <div>
               <img
                 src={item.image}
                 alt={item.title}
