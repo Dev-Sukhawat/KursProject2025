@@ -2,9 +2,13 @@ import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import Data from "../../../../src/data/data.json";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { toggleLikeImage, isImageLiked } from "./likebtn";
 
 export default function Check() {
   const [selected, setSelected] = useState("sell");
+  const [likedState, setLikedState] = useState(0); // bara för re-render
 
   return (
     <section className="CheckTrends bg-gray-100 md:p-4 rounded-lg shadow-md mt-10 mb-4 justify-center">
@@ -85,8 +89,38 @@ export default function Check() {
             {Data.map((image) => (
               <div
                 key={image.id}
-                className="mb-4 break-inside-avoid overflow-hidden rounded-lg shadow-md bg-white"
+                className="mb-4 break-inside-avoid overflow-hidden rounded-lg shadow-md bg-white relative group"
               >
+                {isImageLiked(image.id, image.productNumber) && (
+                  <button
+                    className="absolute  top-2 right-2 z-10 block"
+                    onClick={() => {
+                      toggleLikeImage(image.id, image.productNumber);
+                      setLikedState(likedState + 1);
+                    }}
+                  >
+                    <FontAwesomeIcon
+                      icon={faHeart}
+                      className=" text-2xl text-red-500 bg-white rounded-full p-1"
+                    />
+                  </button>
+                )}
+
+                <button
+                  className={`absolute top-2 right-2 z-9  hidden group-hover:block ${
+                    isImageLiked(image.id, image.productNumber) ? "hidden" : ""
+                  }`}
+                  onClick={() => {
+                    toggleLikeImage(image.id, image.productNumber);
+                    setLikedState(likedState + 1);
+                  }}
+                >
+                  <FontAwesomeIcon
+                    icon={faHeart}
+                    className="text-2xl text-white hover:text-red-500 p-1"
+                  />
+                </button>
+
                 <img
                   src={image.image}
                   alt={image.alt}
@@ -99,7 +133,7 @@ export default function Check() {
       </div>
       <span className="flex flex-col items-center md:mt-5">
         <Link
-          to="/morph"
+          to="/category/all"
           className=" rounded-xl border-2 font-semibold text-sm md:text-xl text-center hover:shadow-[0px_0px_5px_1px_rgba(34,167,197,0.75)] text-blue-600 mb-4 cursor-pointer p-2 hover:underline"
         >
           See more
