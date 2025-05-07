@@ -4,11 +4,14 @@ import { Link } from "react-router-dom";
 import Data from "../../../../src/data/data.json";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
-import { toggleLikeImage, isImageLiked } from "./likebtn";
+import { toggleLikeImage, isImageLiked } from "../../utils/likeStorage.js";
+import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import { toggleCartItem, isInCart } from "../../utils/cartStorage.js";
 
 export default function Check() {
   const [selected, setSelected] = useState("sell");
-  const [likedState, setLikedState] = useState(0); // bara för re-render
+  const [likedState, setLikedState] = useState(0);
+  const [cartState, setCartState] = useState(0);
 
   return (
     <section className="CheckTrends bg-gray-100 md:p-4 rounded-lg shadow-md mt-10 mb-4 justify-center">
@@ -93,7 +96,7 @@ export default function Check() {
               >
                 {isImageLiked(image.id, image.productNumber) && (
                   <button
-                    className="absolute  top-2 right-2 z-10 block"
+                    className="absolute  top-2 left-2 z-10 block"
                     onClick={() => {
                       toggleLikeImage(image.id, image.productNumber);
                       setLikedState(likedState + 1);
@@ -107,7 +110,7 @@ export default function Check() {
                 )}
 
                 <button
-                  className={`absolute top-2 right-2 z-9  hidden group-hover:block ${
+                  className={`absolute top-2 left-2 z-9  hidden group-hover:block ${
                     isImageLiked(image.id, image.productNumber) ? "hidden" : ""
                   }`}
                   onClick={() => {
@@ -118,6 +121,36 @@ export default function Check() {
                   <FontAwesomeIcon
                     icon={faHeart}
                     className="text-2xl text-white hover:text-red-500 p-1"
+                  />
+                </button>
+
+                {isInCart(image.id, image.productNumber) && (
+                  <button
+                    className="absolute top-2 right-2 z-10 block"
+                    onClick={() => {
+                      toggleCartItem(image.id, image.productNumber);
+                      setCartState(cartState + 1);
+                    }}
+                  >
+                    <FontAwesomeIcon
+                      icon={faCartShopping}
+                      className="text-2xl text-green-500 bg-white rounded-full p-1"
+                    />
+                  </button>
+                )}
+
+                <button
+                  className={`absolute top-2 right-2 z-9 hidden group-hover:block  ${
+                    isInCart(image.id, image.productNumber) ? "hidden" : ""
+                  }`}
+                  onClick={() => {
+                    toggleCartItem(image.id, image.productNumber);
+                    setCartState(cartState + 1);
+                  }}
+                >
+                  <FontAwesomeIcon
+                    icon={faCartShopping}
+                    className="text-2xl text-white hover:text-green-500 p-1"
                   />
                 </button>
 
