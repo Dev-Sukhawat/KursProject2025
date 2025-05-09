@@ -2,13 +2,14 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Navbar from "../components/nav/navbar";
+import GoBackButton from "../components/btn/goBackHome";
 import Footer from "../components/footer/footer";
 
 const NoPage = () => {
   return (
     <>
       <Navbar />
-      <StyledWrapper className="h-screen">
+      <StyledWrapper className="h-auto">
         <div className="main_wrapper">
           <div className="main">
             <div className="antenna">
@@ -80,15 +81,13 @@ const NoPage = () => {
             <div className="text_4043">4</div>
           </div>
         </div>
-        <div className="justify-items-center">
-          <Link
-            to="/"
-            className="flex  items-center gap-2 px-4 py-2 border rounded-full bg-[hsla(216,100%,50%,1)] text-white font-bold hover:bg-gray-100 hover:text-black transition justify-center w-100 ;"
-          >
-            Go back home
-          </Link>
-        </div>
       </StyledWrapper>
+      <section className="justify-items-center justify-center">
+        <div className="flex justify-items-center justify-center w-100">
+          <GoBackButton />
+        </div>
+      </section>
+
       <Footer />
     </>
   );
