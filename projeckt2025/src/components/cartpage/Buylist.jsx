@@ -1,43 +1,12 @@
-import React, { useEffect, useState } from "react";
-import Data from "../../data/data.json";
+import React from "react";
+import useCart from "../utils/useCart.js";
 import { Link } from "react-router-dom";
 
 const BuyList = () => {
-  const [cartItems, setCartItems] = useState([]);
-
-  useEffect(() => {
-    loadCart();
-  }, []);
-
-  const loadCart = () => {
-    const stored = localStorage.getItem("cartItems");
-    const cartData = stored ? JSON.parse(stored) : [];
-
-    const productNumbers = cartData.map((item) => item.productNumber);
-
-    const matchedItems = Data.filter((item) =>
-      productNumbers.includes(item.productNumber)
-    );
-
-    setCartItems(matchedItems);
-  };
-
-  const handleRemove = (productNumberToRemove) => {
-    const stored = localStorage.getItem("cartItems");
-    if (!stored) return;
-
-    const cartData = JSON.parse(stored);
-
-    const updatedCart = cartData.filter(
-      (item) => item.productNumber !== productNumberToRemove
-    );
-
-    localStorage.setItem("cartItems", JSON.stringify(updatedCart));
-    loadCart();
-  };
+  const { cartItems, removeFromCart } = useCart();
 
   return (
-    <div className="max-w-xl mx-auto p-4">
+    <section className="max-w-xl mx-auto p-4">
       <h2 className="text-xl font-semibold mb-4">Buy List</h2>
       <hr className="mb-4" />
 
@@ -71,7 +40,7 @@ const BuyList = () => {
             <div className="flex flex-col items-end justify-between h-full">
               <button
                 className="text-red-500 hover:text-red-600 text-xl cursor-pointer"
-                onClick={() => handleRemove(item.productNumber)}
+                onClick={() => removeFromCart(item.productNumber)}
               >
                 🗑
               </button>
@@ -80,7 +49,7 @@ const BuyList = () => {
           </div>
         ))
       )}
-    </div>
+    </section>
   );
 };
 
