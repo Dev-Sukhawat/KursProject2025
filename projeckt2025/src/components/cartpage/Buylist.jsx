@@ -1,9 +1,9 @@
 import React from "react";
-import useCart from "../utils/useCart.js";
+// import useCart from "../utils/useCart.js";
 import { Link } from "react-router-dom";
 
-const BuyList = () => {
-  const { cartItems, removeFromCart } = useCart();
+const BuyList = ({cartItems, removeFromCart}) => {
+  // const { cartItems, removeFromCart } = useCart();
 
   return (
     <section className="max-w-xl mx-auto p-4">
@@ -44,9 +44,11 @@ const BuyList = () => {
               >
                 🗑
               </button>
-              <p className="text-lg font-semibold">{item.topics === 'Limited' || item.topics === 'limited'
-        ? '299kr'
-        : '399kr'}  </p>
+              <p className="text-lg font-semibold">
+                {item.topics === "Limited" || item.topics === "limited"
+                  ? "299kr"
+                  : "399kr"}{" "}
+              </p>
             </div>
           </div>
         ))

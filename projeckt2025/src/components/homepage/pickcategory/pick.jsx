@@ -3,7 +3,7 @@ import React from "react";
 import DataCategories from "../../../data/pick.json";
 import { Link } from "react-router-dom";
 
-export default function pick() {
+export default function Pick() {
   return (
     <section className="ChooseCategory bg-gray-100 md:p-4 rounded-lg shadow-md mt-4 mb-4">
       <h1 className="text-2xl font-semibold text-center mb-2">

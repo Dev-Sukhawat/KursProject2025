@@ -1,14 +1,23 @@
 import React, { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 
-const CustomDropdown = ({ options, defaultLabel = 'Select option' }) => {
+const CustomDropdown = ({
+  options,
+  defaultLabel = "Select option",
+  onChange,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState(defaultLabel);
   const wrapperRef = useRef(null);
 
-  const handleSelect = (value) => {
-    setSelected(value);
+  const handleSelect = (option) => {
+    setSelected(option.label);
     setIsOpen(false);
+    if (onChange) {
+      onChange(option.value); // 🟢 Meddela föräldrakomponenten
+    }
   };
 
   const handleClickOutside = (event) => {
@@ -18,22 +27,28 @@ const CustomDropdown = ({ options, defaultLabel = 'Select option' }) => {
   };
 
   useEffect(() => {
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   return (
     <DropdownWrapper ref={wrapperRef}>
-      <div className="selected" onClick={() => setIsOpen(!isOpen)}>
+      <div className="selected text-sm" onClick={() => setIsOpen(!isOpen)}>
         {selected}
-        <svg xmlns="http://www.w3.org/2000/svg" className={`arrow ${isOpen ? 'open' : ''}`} viewBox="0 0 512 512">
-          <path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z" />
-        </svg>
+        <FontAwesomeIcon
+          className={`arrow ${isOpen ? "open" : ""} text-blue-600`}
+          icon={faAngleRight}
+          size="xl"
+        />
       </div>
       {isOpen && (
-        <div className="-left-[250%] options columns-5 gap-0">
+        <div className="-left-[120%] options columns-3 gap-0">
           {options.map((opt) => (
-            <div key={opt.value} className="option" onClick={() => handleSelect(opt.label)}>
+            <div
+              key={opt.value}
+              className="option"
+              onClick={() => handleSelect(opt)}
+            >
               {opt.label}
             </div>
           ))}
@@ -46,15 +61,15 @@ const CustomDropdown = ({ options, defaultLabel = 'Select option' }) => {
 const DropdownWrapper = styled.div`
   width: fit-content;
   position: relative;
-  font-size: 15px;
-  color: white;
+  color: black;
   cursor: pointer;
   user-select: none;
 
   .selected {
-    background-color: #2a2f3b;
+    border: solid 1px black;
+    background-color: white;
     padding: 5px 10px;
-    border-radius: 5px;
+    border-radius: 1rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -63,11 +78,10 @@ const DropdownWrapper = styled.div`
   }
 
   .arrow {
-    width: 15px;
-    height: 15px;
     fill: white;
+    color: blue
     transition: transform 0.3s ease;
-    transform: rotate(-90deg);
+    transform: rotate(90deg);
   }
 
   .arrow.open {
@@ -76,7 +90,8 @@ const DropdownWrapper = styled.div`
 
   .options {
     position: absolute;
-    background-color: #2a2f3b;
+    border: solid 1px black;
+    background-color: rgb(255, 255, 255);
     border-radius: 5px;
     padding: 5px 0;
     margin-top: 4px;
@@ -90,7 +105,8 @@ const DropdownWrapper = styled.div`
   }
 
   .option:hover {
-    background-color: #323741;
+    background-color: var(--links);
+    color: white;
   }
 `;
 

@@ -1,19 +1,34 @@
-import React from "react";
-import { BuyNavbar } from "../components/nav/navbar";
-import Buylist from "../components/cartpage/Buylist";
-import Orderdeails from "../components/cartpage/Orderdeails";
+import React, { useState } from "react";
+import useCart from "../components/utils/useCart.js";
+import { BuyNavbar } from "../components/nav/Navbar.jsx";
+import Buylist from "../components/cartpage/Buylist.jsx";
+import Orderdetails from "../components/cartpage/Orderdetails.jsx";
+import CartExtension from "../components/cartpage/cartExtension/CartExtension.jsx";
 
-import Footer from "../components/footer/footer";
+import Footer from "../components/footer/Footer.jsx";
 
-function cart() {
+function Cart() {
+  const { cartItems, removeFromCart } = useCart();
+  const [isCheckingOut, setIsCheckingOut] = useState(false);
+
   return (
     <>
       <BuyNavbar />
-      <Buylist />
-      <Orderdeails />
+      {isCheckingOut ? (
+        <CartExtension />
+      ) : (
+        <>
+          <Buylist cartItems={cartItems} removeFromCart={removeFromCart} />
+          <Orderdetails
+            cartItems={cartItems}
+            onCheckout={() => setIsCheckingOut(true)}
+          />
+        </>
+      )}
+
       <Footer />
     </>
   );
 }
 
-export default cart;
+export default Cart;

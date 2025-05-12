@@ -3,7 +3,6 @@ import Data from "../../data/data.json";
 
 const useCart = () => {
     const [cartItems, setCartItems] = useState([]);
-
     useEffect(() => {
         loadCart();
     }, []);

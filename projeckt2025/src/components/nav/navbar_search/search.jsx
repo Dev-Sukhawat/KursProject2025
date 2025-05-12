@@ -62,7 +62,6 @@ export function MdNavbarSearch() {
           )}
         >
           <input
-            defaultChecked
             className="checkbox"
             type="checkbox"
             checked={ifChecked}

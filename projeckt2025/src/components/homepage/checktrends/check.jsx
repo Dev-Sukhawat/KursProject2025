@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import Data from "../../../../src/data/data.json";
+import Data from "../../../data/data.json";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { toggleLikeImage, isImageLiked } from "../../utils/likeStorage.js";

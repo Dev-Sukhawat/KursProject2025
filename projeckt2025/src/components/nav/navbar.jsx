@@ -1,10 +1,8 @@
-import React from "react";
-import "./Navbar.css";
-import NavbarLogo from "./navbarlogo/nav_bar_logo.jsx";
-import Checkbox from "./burgermenu/burgermenu.jsx";
-import Submenu from "./dropdownmenu/drop_down_items.jsx";
-import NavbarBtn from "./navbarbtn/navbarbtn.jsx";
-import { NavbarSearch } from "./navbar_search/search.jsx";
+import NavbarLogo from "./navbarlogo/Nav_bar_logo.jsx";
+import Checkbox from "./burgermenu/Burgermenu.jsx";
+import Submenu from "./dropdownmenu/Drop_down_items.jsx";
+import NavbarBtn from "./navbarbtn/Navbarbtn.jsx";
+import { NavbarSearch } from "./navbar_search/Search.jsx";
 import { useState } from "react";
 
 export default function Navbar() {
@@ -56,4 +54,3 @@ export function BuyNavbar() {
     </section>
   );
 }
-

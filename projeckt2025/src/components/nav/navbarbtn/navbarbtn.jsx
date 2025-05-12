@@ -6,7 +6,7 @@ import {
   faBookmark,
   faCartShopping,
 } from "@fortawesome/free-solid-svg-icons";
-import { MdNavbarSearch } from "../navbar_search/search.jsx";
+import { MdNavbarSearch } from "../navbar_search/Search.jsx";
 
 export default function Btn() {
   return (
@@ -29,7 +29,7 @@ export default function Btn() {
         </li>
         <li>
           <Link
-            to="/likes"
+            to="/underdeveloped"
             className="navbar__icon-link grid place-items-center md:gap-1"
           >
             <FontAwesomeIcon

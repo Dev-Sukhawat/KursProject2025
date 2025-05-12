@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default function Yourstyle() {
+export default function YourStyle() {
   return (
     <section className=" bg-red-100 py-12 px-4 text-center md:mt-15">
       <div className="max-w-2xl mx-auto">
@@ -40,7 +40,7 @@ export default function Yourstyle() {
           className="col-span-1 row-span-2 w-full h-full object-cover rounded-lg shadow-md"
         />
         <div className="col-span-2 mt-4  md:mt-10 md:justify-items-center ">
-            <Link to="/underdeveloped">
+          <Link to="/underdeveloped">
             <p className="bg-white px-4 py-1 rounded-full border-2 border-blue-600 text-blue-600 font-medium hover:bg-blue-600 hover:text-white transition  md:text-2xl md:font-semibold">
               Try It
             </p>

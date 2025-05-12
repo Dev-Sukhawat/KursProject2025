@@ -1,9 +1,9 @@
 import React from "react";
-import ViewMore from "./viewmore";
+import ViewMore from "./Viewmore";
 import Data from "../../../data/data.json";
 import { Link } from "react-router-dom";
 
-export default function announcement() {
+export default function Announcement() {
   const topicColorMap = {
     Inspirations: "text-blue-600",
     Popular: "text-purple-600",
@@ -13,17 +13,17 @@ export default function announcement() {
 
   return (
     <section className="flex md:w-[100%] bg-white p-4 md:p-0 flex md:w-[100%] bg-white p-4 md:p-0 ">
-      <div class=" md:w-[90%] mx-auto space-y-6 pt-8">
+      <div className=" md:w-[90%] mx-auto space-y-6 pt-8">
         {Data.slice(0, 4).map((item) => (
           <div
             key={item.id}
-            class="grid grid-cols-2 w-[100%] md:h-auto gap-1 md:gap-6 items-center bg-white p-2 md:p-6 rounded-md shadow-md hover:shadow-lg transition duration-300 ease-in-out"
+            className="grid grid-cols-2 w-[100%] md:h-auto gap-1 md:gap-6 items-center bg-white p-2 md:p-6 rounded-md shadow-md hover:shadow-lg transition duration-300 ease-in-out"
           >
             <div>
               <img
                 src={item.image}
                 alt={item.title}
-                class="w-[100%] h-24 md:h-auto rounded-md object-cover"
+                className="w-[100%] h-24 md:h-auto rounded-md object-cover"
                 loading="lazy"
               />
             </div>
@@ -36,7 +36,9 @@ export default function announcement() {
               >
                 {item.topics}
               </Link>
-              <h3 class="font-semibold lg:text-lg xl:text-xl">{item.title}</h3>
+              <h3 className="font-semibold lg:text-lg xl:text-xl">
+                {item.title}
+              </h3>
               <div>
                 {item.categories.map((category, index) => (
                   <Link

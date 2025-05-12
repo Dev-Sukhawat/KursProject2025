@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import Navbar from "../components/nav/navbar";
-import GoBackButton from "../components/btn/goBackHome";
-import Footer from "../components/footer/footer";
+import Navbar from "../components/nav/Navbar";
+import GoBackButton from "../components/btn/GoBackButton";
+import Footer from "../components/footer/Footer";
 
 const NoPage = () => {
   return (
