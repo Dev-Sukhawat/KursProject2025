@@ -25,7 +25,7 @@ const BuyList = () => {
             />
 
             <div className="flex-1">
-              <h3 className="font-semibold">MetalMorph</h3>
+              <h3 className="font-semibold">MetalMorph: No{item.id}.</h3>
               <p>{item.title}</p>
               <p className="text-sm text-gray-600">
                 {item.description}"Qty: 1; Style: Basic; Size: 45x32cm"
@@ -44,7 +44,9 @@ const BuyList = () => {
               >
                 🗑
               </button>
-              <p className="text-lg font-semibold">{item.price} 299kr</p>
+              <p className="text-lg font-semibold">{item.topics === 'Limited' || item.topics === 'limited'
+        ? '299kr'
+        : '399kr'}  </p>
             </div>
           </div>
         ))

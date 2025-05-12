@@ -1,11 +1,11 @@
 [
-    { "value": "null", "label": "Delivery " },
-    { "value": "postnord", "label": "Postnord " },
-    { "value": "budebee", "label": "Budebee " },
-    { "value": "bring", "label": "Bring " },
-    { "value": "instabox", "label": "Instabox " },
-    { "value": "fedEx", "label": "FedEx " },
-    { "value": "ups", "label": "Ups " },
-    { "value": "dhl,", "label": "DHL " },
-    { "value": "DbSchenker", "label": "DB Schenker " }
+    { "value": "null", "label": "Delivery ", "cost": "null" },
+    { "value": "postnord", "label": "Postnord ", "cost": "free" },
+    { "value": "budebee", "label": "Budebee ", "cost": "free" },
+    { "value": "bring", "label": "Bring ", "cost": "25" },
+    { "value": "instabox", "label": "Instabox ", "cost": "free" },
+    { "value": "fedEx", "label": "FedEx ", "cost": "25" },
+    { "value": "ups", "label": "Ups ", "cost": "25" },
+    { "value": "dhl,", "label": "DHL ", "cost": "25" },
+    { "value": "DbSchenker", "label": "DB Schenker", "cost": "25" }
 ]
