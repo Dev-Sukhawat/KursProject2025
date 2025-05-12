@@ -1,0 +1,11 @@
+[
+    { "value": "null", "label": "Delivery " },
+    { "value": "postnord", "label": "Postnord " },
+    { "value": "budebee", "label": "Budebee " },
+    { "value": "bring", "label": "Bring " },
+    { "value": "instabox", "label": "Instabox " },
+    { "value": "fedEx", "label": "FedEx " },
+    { "value": "ups", "label": "Ups " },
+    { "value": "dhl,", "label": "DHL " },
+    { "value": "DbSchenker", "label": "DB Schenker " }
+]

@@ -1,5 +1,8 @@
 import React from "react";
 import useCart from "../utils/useCart.js";
+import CustomDropdown from "../utils/customDropdown.jsx"
+import EuropeCountries from "../../data/europeCountries.json"
+import Delivery  from "../../data/deliveryService.json"
 import GoBackButton from "../btn/goBackHome.jsx";
 import Visa from "../../assets/img/logo/visa.svg";
 import Mastercard from "../../assets/img/logo/mastercard.svg";
@@ -21,10 +24,11 @@ export default function Orderdeails() {
             {/* Country Selector */}
             <div className="flex justify-between items-center mb-2">
               <label>Ship to:</label>
-              <select className="border rounded-full px-4 py-1">
-                <option>Sweden</option>
-                {/* fler länder om du vill */}
-              </select>
+              <CustomDropdown
+  defaultLabel="Country"
+  options={EuropeCountries}
+/>
+
             </div>
             {/* Item total */}
             <div className="flex justify-between items-center mb-2">
@@ -38,10 +42,10 @@ export default function Orderdeails() {
             {/* Delivery method */}
             <div className="flex justify-between items-center mb-2">
               <label>Delivery method:</label>
-              <select className="border rounded-full px-4 py-1">
-                <option>Postnord</option>
-                {/* fler alternativ */}
-              </select>
+              <CustomDropdown
+  defaultLabel="Delivery "
+  options={Delivery }
+/>
             </div>
             {/* Shipping cost */}
             <div className="flex justify-between items-center mb-2">
