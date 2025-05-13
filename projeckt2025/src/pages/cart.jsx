@@ -7,21 +7,34 @@ import CartExtension from "../components/cartpage/cartExtension/CartExtension.js
 
 import Footer from "../components/footer/Footer.jsx";
 
-function Cart() {
+function Cart({ setSelectedDelivery }) {
   const { cartItems, removeFromCart } = useCart();
   const [isCheckingOut, setIsCheckingOut] = useState(false);
+  const [selectedCountry, setSelectedCountry] = useState("");
+  // const [shippingCost, setShippingCost] = useState({
+  //   display: "0.00kr",
+  //   value: 0,
+  // });
 
   return (
     <>
       <BuyNavbar />
       {isCheckingOut ? (
-        <CartExtension />
+        <CartExtension
+          selectedCountry={selectedCountry}
+          onCheckout={() => setIsCheckingOut(false)}
+          cartItems={cartItems}
+          setSelectedDelivery={setSelectedDelivery}
+          // shippingCost={shippingCost}
+        />
       ) : (
         <>
           <Buylist cartItems={cartItems} removeFromCart={removeFromCart} />
           <Orderdetails
             cartItems={cartItems}
             onCheckout={() => setIsCheckingOut(true)}
+            setSelectedCountry={setSelectedCountry}
+            // setShippingCost={setShippingCost}
           />
         </>
       )}

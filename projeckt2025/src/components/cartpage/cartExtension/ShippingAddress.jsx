@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function ShippingAddress() {
+export default function ShippingAddress({ selectedCountry, onCheckout }) {
   return (
     <section className="max-w-xl mx-auto p-4">
       <h2 className="text-xl font-semibold mb-4">ShippingAddress</h2>
@@ -44,12 +44,18 @@ export default function ShippingAddress() {
 
         <div>
           <label className="block font-medium">Country</label>
-          <input type="text" className="w-full border p-2 rounded" />
+          <input
+            type="text"
+            value={selectedCountry}
+            readOnly
+            placeholder="No country selected"
+            className="w-full border p-2 rounded capitalize"
+          />
           <p className="text-sm text-gray-500">
             Country can be changed at{" "}
-            <a href="#" className="text-blue-600 underline">
+            <button onClick={onCheckout} className="text-blue-600 underline">
               Buy List
-            </a>
+            </button>
           </p>
         </div>
 
@@ -90,6 +96,7 @@ export default function ShippingAddress() {
           </select>
         </div>
       </form>
+      <hr className="mt-5" />
     </section>
   );
 }

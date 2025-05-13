@@ -8,7 +8,11 @@ import PaymnetIcons from "./PaymnetIcons.jsx";
 import Membership from "./Membership.jsx";
 import DiscontCode from "../btn/DiscontCode.jsx";
 
-export default function Orderdeails({ cartItems, onCheckout }) {
+export default function Orderdeails({
+  cartItems,
+  onCheckout,
+  setSelectedCountry,
+}) {
   // const { cartItems, reloadCart } = useCart();
 
   const orderTotal = cartItems.reduce((sum, item) => {
@@ -18,12 +22,16 @@ export default function Orderdeails({ cartItems, onCheckout }) {
 
   const [selectedDelivery, setSelectedDelivery] = useState(null);
 
+  const handleCountryChange = (value) => {
+    setSelectedCountry(value);
+  };
+
   const handleDeliveryChange = (value) => {
     setSelectedDelivery(value);
   };
 
   const getShippingCost = () => {
-    const method = DeliveryOptions.find((d) => d.value === selectedDelivery);
+    const method = DeliveryOptions.find((e) => e.value === selectedDelivery);
 
     if (!method || method.cost === "null") {
       return { display: "0.00kr", value: 0 };
@@ -39,7 +47,6 @@ export default function Orderdeails({ cartItems, onCheckout }) {
       value: numeric,
     };
   };
-
   return (
     <section className="max-w-xl mx-auto p-4 items-center justify-center">
       {cartItems.length === 0 ? (
@@ -51,7 +58,11 @@ export default function Orderdeails({ cartItems, onCheckout }) {
           {/* Country Selector */}
           <div className="flex mt-4 justify-between items-center mb-2">
             <label>Ship to:</label>
-            <CustomDropdown defaultLabel="Country" options={EuropeCountries} />
+            <CustomDropdown
+              defaultLabel="Country"
+              options={EuropeCountries}
+              onChange={handleCountryChange}
+            />
           </div>
           {/* Item total */}
           <div className="grid grid-flow-col justify-between items-start mb-2">
