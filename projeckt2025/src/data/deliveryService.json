@@ -1,5 +1,4 @@
 [
-  { "value": "null", "label": "Delivery ", "cost": "null" },
   { "value": "postnord", "label": "Postnord ", "cost": "free" },
   { "value": "budebee", "label": "Budebee ", "cost": "free" },
   { "value": "bring", "label": "Bring ", "cost": "25" },
