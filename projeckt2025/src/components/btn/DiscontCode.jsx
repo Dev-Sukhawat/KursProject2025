@@ -7,7 +7,7 @@ export default function DiscontCode() {
     <section className="Discont-Code-Btn mb-4">
       {!showInput ? (
         <p
-          className="text-sm text-blue-600 underline cursor-pointer"
+          className="w-max text-sm text-blue-600 underline cursor-pointer"
           onClick={() => setShowInput(true)}
         >
           Discount code or eGift card
@@ -22,7 +22,7 @@ export default function DiscontCode() {
             onChange={(e) => setDiscountCode(e.target.value)}
           />
           <p
-            className="text-sm text-blue-600 underline cursor-pointer "
+            className="w-max text-sm text-blue-600 underline cursor-pointer "
             onClick={() => setShowInput(false)}
           >
             Doesn't have Discount code

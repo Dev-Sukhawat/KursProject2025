@@ -34,6 +34,7 @@ function Cart({ setSelectedDelivery }) {
             cartItems={cartItems}
             onCheckout={() => setIsCheckingOut(true)}
             setSelectedCountry={setSelectedCountry}
+            selectedCountry={selectedCountry}
             // setShippingCost={setShippingCost}
           />
         </>

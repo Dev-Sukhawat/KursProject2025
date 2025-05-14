@@ -11,6 +11,7 @@ import DiscontCode from "../btn/DiscontCode.jsx";
 export default function Orderdeails({
   cartItems,
   onCheckout,
+  selectedCountry,
   setSelectedCountry,
 }) {
   // const { cartItems, reloadCart } = useCart();
@@ -59,7 +60,7 @@ export default function Orderdeails({
           <div className="flex mt-4 justify-between items-center mb-2">
             <label>Ship to:</label>
             <CustomDropdown
-              defaultLabel="Country"
+              // defaultLabel="Country"
               options={EuropeCountries}
               onChange={handleCountryChange}
             />
@@ -87,7 +88,7 @@ export default function Orderdeails({
             <div className="flex justify-between items-center mb-2">
               <label>Delivery method:</label>
               <CustomDropdown
-                defaultLabel="Delivery"
+                // defaultLabel="Delivery"
                 options={DeliveryOptions}
                 onChange={handleDeliveryChange}
               />
@@ -102,13 +103,19 @@ export default function Orderdeails({
           <div className="flex justify-between items-center font-semibold mb-2">
             <span>Order total:</span>
             <span>{(orderTotal + getShippingCost().value).toFixed(2)}kr</span>
+            {/* {console.log(getShippingCost())} */}
           </div>
           <DiscontCode />
           <Membership />
           {/* Checkout button */}
           <button
             onClick={onCheckout}
-            className="w-full bg-blue-600 text-white py-2 rounded font-semibold hover:bg-blue-700 transition"
+            disabled={!selectedCountry || !selectedDelivery}
+            className={`w-full text-white py-2 rounded font-semibold transition ${
+              !selectedCountry || !selectedDelivery
+                ? "bg-gray-400 cursor-not-allowed"
+                : "bg-blue-600 hover:bg-blue-700 cursor-pointer"
+            }`}
           >
             Checkout
           </button>
