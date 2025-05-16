@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import Data from "../../../data/data.json";
+import useFerch from "../../utils/useFerch";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { toggleLikeImage, isImageLiked } from "../../utils/likeStorage.js";
@@ -12,6 +12,10 @@ export default function Check() {
   const [selected, setSelected] = useState("sell");
   const [likedState, setLikedState] = useState(0);
   const [cartState, setCartState] = useState(0);
+  const { data: Data, loading, error } = useFerch("/api/data");
+
+  if (loading) return <p>Loading posts...</p>;
+  if (error) return <p>Error: {error}</p>;
 
   return (
     <section className="CheckTrends bg-gray-100 md:p-4 rounded-lg shadow-md mt-10 mb-4 justify-center">
