@@ -4,7 +4,7 @@ import useFerch from "../../utils/useFerch";
 import { Link } from "react-router-dom";
 
 export default function Announcement() {
-  const { data: data, loading, error } = useFerch("/api/data");
+  const { data: Data, loading, error } = useFerch("/api/data");
 
   if (loading) return <p>Loading posts...</p>;
   if (error) return <p>Error: {error}</p>;
@@ -19,7 +19,7 @@ export default function Announcement() {
   return (
     <section className="flex md:w-[100%] bg-white p-4 md:p-0 flex md:w-[100%] bg-white p-4 md:p-0 ">
       <div className=" md:w-[90%] mx-auto space-y-6 pt-8">
-        {data.slice(0, 4).map((item) => (
+        {Data.slice(0, 4).map((item) => (
           <div
             key={item.id}
             className="grid grid-cols-2 w-[100%] md:h-auto gap-1 md:gap-6 items-center bg-white p-2 md:p-6 rounded-md shadow-md hover:shadow-lg transition duration-300 ease-in-out"
