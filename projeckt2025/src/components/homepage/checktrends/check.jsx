@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import useFetch from "../../utils/useFetch.js";
+import DataBackUp from "../../../data/data.json"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { toggleLikeImage, isImageLiked } from "../../utils/likeStorage.js";
@@ -12,7 +13,7 @@ export default function Check() {
   const [selected, setSelected] = useState("sell");
   const [likedState, setLikedState] = useState(0);
   const [cartState, setCartState] = useState(0);
-  const { data: Data, loading, error } = useFetch("/api/data");
+  const { data: Data, loading, error } = useFetch("/api/data", DataBackUp);
 
   if (loading) return <p>Loading posts...</p>;
   if (error) return <p>Error: {error}</p>;
