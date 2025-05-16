@@ -1,14 +1,10 @@
-import React from "react";
-// import { GetShippingCost } from "../Orderdetails";
-
-export default function OrderSummary({ cartItems,shippingCost }) {
+export default function OrderSummary({ cartItems, shippingCost }) {
   const totalItems = cartItems.length;
   const orderTotal = cartItems.reduce((sum, item) => {
     const price = item.topics?.toLowerCase() === "limited" ? 299 : 399;
     return sum + price;
   }, 0);
-console.log(shippingCost);
-// console.log(cartItems);
+  console.log(shippingCost);
 
   const total = orderTotal + 20;
 

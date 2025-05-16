@@ -35,13 +35,13 @@ export default function Orderdeails({
     data: EuropeCountries,
     loading,
     error,
-  } = useFetch("/api/europeCountries", DataBackUp); // fixed path
+  } = useFetch("/api/europeCountries", DataBackUp);
 
   const {
     data: DeliveryOptions,
     loading: loadingDelivery,
     error: errorDelivery,
-  } = useFetch("/api/deliveryService", DataBackUpV2); // fixed variable names
+  } = useFetch("/api/deliveryService", DataBackUpV2);
 
   useEffect(() => {
     if (!DeliveryOptions) return; // Don't run if data not loaded yet

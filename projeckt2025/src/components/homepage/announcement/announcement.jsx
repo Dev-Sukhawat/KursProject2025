@@ -1,4 +1,3 @@
-import React from "react";
 import ViewMore from "./Viewmore";
 import useFetch from "../../utils/useFetch";
 import DataBackUp from "../../../data/data.json"
