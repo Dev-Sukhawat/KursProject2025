@@ -387,7 +387,7 @@
     { "value": "dhl", "label": "DHL ", "cost": "25" },
     { "value": "DbSchenker", "label": "DbSchenker", "cost": "25" }
   ],
-  "europContries": [
+  "europeCountries": [
     { "value": "austria", "label": "Austria" },
     { "value": "belgium", "label": "Belgium" },
     { "value": "czech-republic", "label": "Czech Republic" },
