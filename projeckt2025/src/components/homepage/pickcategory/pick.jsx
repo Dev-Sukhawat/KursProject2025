@@ -1,10 +1,11 @@
 import React from "react";
 // import { useState } from "react";
 import useFetch from "../../utils/useFetch";
+import DataBackUp from "../../../data/pick.json"
 import { Link } from "react-router-dom";
 
 export default function Pick() {
-  const { data: DataCategories, loading, error } = useFetch("/api/pick");
+  const { data: DataCategories, loading, error } = useFetch("/api/pick", DataBackUp);
 
   if (loading) return <p>Loading posts...</p>;
   if (error) return <p>Error: {error}</p>;

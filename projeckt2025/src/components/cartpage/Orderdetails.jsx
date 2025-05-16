@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import CustomDropdown from "../utils/CustomDropdown.jsx";
 import useFetch from "../utils/useFetch.js";
+import DataBackUp from "../../data/europeCountries.json";
+import DataBackUpV2 from "../../data/deliveryService.json";
 import GoBackButton from "../btn/GoBackButton.jsx";
 import PaymnetIcons from "./PaymnetIcons.jsx";
 import Membership from "./Membership.jsx";
@@ -33,13 +35,13 @@ export default function Orderdeails({
     data: EuropeCountries,
     loading,
     error,
-  } = useFetch("/api/europeCountries"); // fixed path
+  } = useFetch("/api/europeCountries", DataBackUp); // fixed path
 
   const {
     data: DeliveryOptions,
     loading: loadingDelivery,
     error: errorDelivery,
-  } = useFetch("/api/deliveryService"); // fixed variable names
+  } = useFetch("/api/deliveryService", DataBackUpV2); // fixed variable names
 
   useEffect(() => {
     if (!DeliveryOptions) return; // Don't run if data not loaded yet

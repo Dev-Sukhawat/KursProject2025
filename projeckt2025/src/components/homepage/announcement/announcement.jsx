@@ -1,10 +1,11 @@
 import React from "react";
 import ViewMore from "./Viewmore";
 import useFetch from "../../utils/useFetch";
+import DataBackUp from "../../../data/data.json"
 import { Link } from "react-router-dom";
 
 export default function Announcement() {
-  const { data: Data, loading, error } = useFetch("/api/data");
+  const { data: Data, loading, error } = useFetch("/api/data", DataBackUp);
 
   if (loading) return <p>Loading posts...</p>;
   if (error) return <p>Error: {error}</p>;
