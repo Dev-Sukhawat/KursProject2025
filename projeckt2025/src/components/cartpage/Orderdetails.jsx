@@ -66,6 +66,7 @@ export default function Orderdeails({
             <label>Ship to:</label>
             <CustomDropdown
               options={EuropeCountries}
+              required
               onChange={handleCountryChange}
             />
           </div>
@@ -93,6 +94,7 @@ export default function Orderdeails({
               <label>Delivery method:</label>
               <CustomDropdown
                 options={DeliveryOptions}
+                required
                 onChange={handleDeliveryChange}
               />
             </div>
