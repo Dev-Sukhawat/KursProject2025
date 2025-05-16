@@ -1,10 +1,10 @@
 import React from "react";
 import ViewMore from "./Viewmore";
-import useFerch from "../../utils/useFerch";
+import useFetch from "../../utils/useFetch";
 import { Link } from "react-router-dom";
 
 export default function Announcement() {
-  const { data: Data, loading, error } = useFerch("/api/data");
+  const { data: Data, loading, error } = useFetch("/api/data");
 
   if (loading) return <p>Loading posts...</p>;
   if (error) return <p>Error: {error}</p>;

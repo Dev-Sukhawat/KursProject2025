@@ -1,10 +1,10 @@
 import React from "react";
 // import { useState } from "react";
-import useFerch from "../../utils/useFerch";
+import useFetch from "../../utils/useFetch";
 import { Link } from "react-router-dom";
 
 export default function Pick() {
-  const { data: DataCategories, loading, error } = useFerch("/api/pick");
+  const { data: DataCategories, loading, error } = useFetch("/api/pick");
 
   if (loading) return <p>Loading posts...</p>;
   if (error) return <p>Error: {error}</p>;
