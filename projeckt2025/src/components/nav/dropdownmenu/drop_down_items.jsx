@@ -21,13 +21,13 @@ function Submenu() {
     <div className="submenu-wrapper absolute z-100 size-full top-30 left-0 bg-white  shadow-md sm:top-33 lg:top-40 md:text-lg md:mt-3 lg:mt-4">
       <div className="text-red flex items-center justify-center gap-2 mb-2 text-xl ">
         <h1>
-          <Link to="/login" className="login">
+          <Link to="/underdeveloped" className="login">
             Log In
           </Link>
         </h1>
         <h1>or</h1>
         <h1>
-          <Link to="/signup" className="signup">
+          <Link to="/underdeveloped" className="signup">
             Sign Up
           </Link>
         </h1>
@@ -83,22 +83,22 @@ function Submenu() {
           </details>
         </li>
         <li>
-          <Link to="/membership" className="navbar__link font-bold">
+          <Link to="/underdeveloped" className="navbar__link font-bold">
             Membership
           </Link>
         </li>
         <li>
-          <Link to="/support" className="navbar__link">
+          <Link to="/underdeveloped" className="navbar__link">
             Support
           </Link>
         </li>
         <li>
-          <Link to="/about" className="navbar__link">
+          <Link to="/underdeveloped" className="navbar__link">
             About
           </Link>
         </li>
         <li>
-          <Link to="/sell" className="navbar__link font-bold">
+          <Link to="/underdeveloped" className="navbar__link font-bold">
             Sell your art
           </Link>
         </li>
