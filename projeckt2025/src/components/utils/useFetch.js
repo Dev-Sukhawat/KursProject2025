@@ -1,29 +1,34 @@
-import { useState, useEffect } from "react";
+// useFetch.js
+import { useState, useEffect } from 'react';
 
-function useFetch(url) {
-    const [data, setData] = useState(null); // could be array or object
+function useFetch(url, fallbackData = null) {
+    const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+
     useEffect(() => {
         let isMounted = true;
 
         setLoading(true);
         fetch(url)
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error('Failed to fetch data');
-                }
-                return response.json();
+            .then((res) => {
+                if (!res.ok) throw new Error('Failed to fetch');
+                return res.json();
             })
-            .then((data) => {
+            .then((json) => {
                 if (isMounted) {
-                    setData(data);
+                    setData(json);
                     setLoading(false);
                 }
             })
             .catch((err) => {
                 if (isMounted) {
-                    setError(err.message);
+                    if (fallbackData) {
+                        setData(fallbackData);
+                        setError(null); // ignore the error if fallback works
+                    } else {
+                        setError(err.message);
+                    }
                     setLoading(false);
                 }
             });
@@ -31,7 +36,7 @@ function useFetch(url) {
         return () => {
             isMounted = false;
         };
-    }, [url]);
+    }, [url, fallbackData]);
 
     return { data, loading, error };
 }
