@@ -4,7 +4,6 @@ export default function OrderSummary({ cartItems, shippingCost }) {
     const price = item.topics?.toLowerCase() === "limited" ? 299 : 399;
     return sum + price;
   }, 0);
-  console.log(shippingCost);
 
   const total = orderTotal + 20;
 
