@@ -25,7 +25,7 @@ const BuyList = ({cartItems, removeFromCart}) => {
             />
 
             <div className="flex-1">
-              <h3 className="font-semibold">MetalMorph: No{item.id}.</h3>
+              <h3 className="font-semibold">MetalMorph: No.{item.id}</h3>
               <p>{item.title}</p>
               <p className="text-sm text-gray-600">
                 {item.description}"Qty: 1; Style: Basic; Size: 45x32cm"

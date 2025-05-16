@@ -8,7 +8,7 @@ export default function CartExtension({
   onCheckout,
   cartItems,
   setSelectedDelivery,
-  // shippingCost,
+  shippingCost,
 }) {
   const [formValid, setFormValid] = useState(false);
   const [formData, setFormData] = useState({
@@ -33,7 +33,7 @@ export default function CartExtension({
       <OrderSummary
         cartItems={cartItems}
         setSelectedDelivery={setSelectedDelivery}
-        // shippingCost={shippingCost}
+        shippingCost={shippingCost}
       />
       <PaymentMethod
         cartItems={cartItems}

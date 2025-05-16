@@ -1,16 +1,16 @@
 import React from "react";
 // import { GetShippingCost } from "../Orderdetails";
 
-export default function OrderSummary({ cartItems }) {
+export default function OrderSummary({ cartItems,shippingCost }) {
   const totalItems = cartItems.length;
   const orderTotal = cartItems.reduce((sum, item) => {
     const price = item.topics?.toLowerCase() === "limited" ? 299 : 399;
     return sum + price;
   }, 0);
-  // console.log(GetShippingCost);
+console.log(shippingCost);
+// console.log(cartItems);
 
-  const shippingCost = 20;
-  const total = orderTotal + shippingCost;
+  const total = orderTotal + 20;
 
   return (
     <section className="max-w-xl mx-auto p-4 rounded bg-gray-100 shadow-sm">
@@ -53,7 +53,7 @@ export default function OrderSummary({ cartItems }) {
       {/* Shipping */}
       <div className="flex justify-between py-1 border-b font-medium">
         <span>Shipping:</span>
-        <span>{shippingCost}kr</span>
+        <span>{shippingCost.value}kr</span>
       </div>
 
       {/* Total */}

@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-// import useCart from "../utils/useCart.js";
+import React, { useState, useEffect } from "react";
 import CustomDropdown from "../utils/CustomDropdown.jsx";
 import EuropeCountries from "../../data/europeCountries.json";
 import DeliveryOptions from "../../data/deliveryService.json";
@@ -13,8 +12,9 @@ export default function Orderdeails({
   onCheckout,
   selectedCountry,
   setSelectedCountry,
+  setShippingCost,
+  shippingCost,
 }) {
-  // const { cartItems, reloadCart } = useCart();
 
   const orderTotal = cartItems.reduce((sum, item) => {
     const price = item.topics?.toLowerCase() === "limited" ? 299 : 399;
@@ -30,6 +30,28 @@ export default function Orderdeails({
   const handleDeliveryChange = (value) => {
     setSelectedDelivery(value);
   };
+
+  useEffect(() => {
+    const newCost = () => {
+    const method = DeliveryOptions.find((e) => e.value === selectedDelivery);
+
+    if (!method || method.cost === "null") {
+      return { display: "0.00kr", value: 0 };
+    }
+
+    if (method.cost === "free") {
+      return { display: "Free", value: 0 };
+    }
+
+    const numeric = parseFloat(method.cost);
+    return {
+      display: `${numeric.toFixed(2)}kr`,
+      value: numeric,
+    };
+  }
+  setShippingCost(newCost)
+  }, [selectedDelivery, setShippingCost]
+  )
 
   const getShippingCost = () => {
     const method = DeliveryOptions.find((e) => e.value === selectedDelivery);
@@ -48,6 +70,7 @@ export default function Orderdeails({
       value: numeric,
     };
   };
+
   return (
     <section className="max-w-xl mx-auto p-4 items-center justify-center">
       {cartItems.length === 0 ? (
@@ -60,7 +83,6 @@ export default function Orderdeails({
           <div className="flex mt-4 justify-between items-center mb-2">
             <label>Ship to:</label>
             <CustomDropdown
-              // defaultLabel="Country"
               options={EuropeCountries}
               onChange={handleCountryChange}
             />
@@ -88,14 +110,14 @@ export default function Orderdeails({
             <div className="flex justify-between items-center mb-2">
               <label>Delivery method:</label>
               <CustomDropdown
-                // defaultLabel="Delivery"
                 options={DeliveryOptions}
                 onChange={handleDeliveryChange}
               />
             </div>
             <div className="flex justify-between items-center mb-2">
               <span>Shipping:</span>
-              <span>{getShippingCost().display}</span>
+              <span>{shippingCost.display}</span>
+              {console.log(shippingCost)}
             </div>
           </div>
           <hr className="my-2" />
@@ -103,7 +125,6 @@ export default function Orderdeails({
           <div className="flex justify-between items-center font-semibold mb-2">
             <span>Order total:</span>
             <span>{(orderTotal + getShippingCost().value).toFixed(2)}kr</span>
-            {/* {console.log(getShippingCost())} */}
           </div>
           <DiscontCode />
           <Membership />
