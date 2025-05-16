@@ -8,10 +8,6 @@ import PaymentForm from "./PaymentForm";
 
 export default function PaymentMethod({ formValid }) {
   const navigate = useNavigate();
-  // const orderTotal = cartItems.reduce((sum, item) => {
-  //   const price = item.topics?.toLowerCase() === "limited" ? 299 : 399;
-  //   return sum + price;
-  // }, 0);
 
   const [paymentMethod, setPaymentMethod] = useState("card");
   return (
