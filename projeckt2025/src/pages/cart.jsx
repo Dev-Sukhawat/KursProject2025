@@ -11,7 +11,10 @@ function Cart({ setSelectedDelivery }) {
   const { cartItems, removeFromCart } = useCart();
   const [isCheckingOut, setIsCheckingOut] = useState(false);
   const [selectedCountry, setSelectedCountry] = useState("");
-  const [shippingCost, setShippingCost] = useState();
+  const [shippingCost, setShippingCost] = useState({
+    display: "0.00kr",
+    value: 0,
+  });
 
   return (
     <>
