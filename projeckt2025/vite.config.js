@@ -9,4 +9,13 @@ export default defineConfig({
     react(),
     tailwindcss()
   ],
+  server: {
+    proxy: {
+      '/api': { // Proxy requests starting with /api
+        target: 'http://localhost:3000', // The default port JSON Server runs on
+        changeOrigin: true, // For proper handling of the 'Host' header
+        rewrite: (path) => path.replace(/^\/api/, ''), // Remove the /api prefix when forwarding
+      },
+    },
+  },
 })
