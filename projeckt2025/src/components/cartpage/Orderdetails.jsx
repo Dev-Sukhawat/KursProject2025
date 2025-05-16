@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import CustomDropdown from "../utils/CustomDropdown.jsx";
-import EuropeCountries from "../../data/europeCountries.json";
-import DeliveryOptions from "../../data/deliveryService.json";
+import useFetch from "../utils/useFetch.js";
 import GoBackButton from "../btn/GoBackButton.jsx";
 import PaymnetIcons from "./PaymnetIcons.jsx";
 import Membership from "./Membership.jsx";
@@ -15,7 +14,6 @@ export default function Orderdeails({
   setShippingCost,
   shippingCost,
 }) {
-
   const orderTotal = cartItems.reduce((sum, item) => {
     const price = item.topics?.toLowerCase() === "limited" ? 299 : 399;
     return sum + price;
@@ -31,27 +29,46 @@ export default function Orderdeails({
     setSelectedDelivery(value);
   };
 
+  const {
+    data: EuropeCountries,
+    loading,
+    error,
+  } = useFetch("/api/europeCountries"); // fixed path
+
+  const {
+    data: DeliveryOptions,
+    loading: loadingDelivery,
+    error: errorDelivery,
+  } = useFetch("/api/deliveryService"); // fixed variable names
+
   useEffect(() => {
+    if (!DeliveryOptions) return; // Don't run if data not loaded yet
+
     const newCost = () => {
-    const method = DeliveryOptions.find((e) => e.value === selectedDelivery);
+      const method = DeliveryOptions.find((e) => e.value === selectedDelivery);
 
-    if (!method || method.cost === "null") {
-      return { display: "0.00kr", value: 0 };
-    }
+      if (!method || method.cost === "null") {
+        return { display: "0.00kr", value: 0 };
+      }
 
-    if (method.cost === "free") {
-      return { display: "Free", value: 0 };
-    }
+      if (method.cost === "free") {
+        return { display: "Free", value: 0 };
+      }
 
-    const numeric = parseFloat(method.cost);
-    return {
-      display: `${numeric.toFixed(2)}kr`,
-      value: numeric,
+      const numeric = parseFloat(method.cost);
+      return {
+        display: `${numeric.toFixed(2)}kr`,
+        value: numeric,
+      };
     };
-  }
-  setShippingCost(newCost)
-  }, [selectedDelivery, setShippingCost]
-  )
+
+    setShippingCost(newCost());
+  }, [selectedDelivery, DeliveryOptions, setShippingCost]);
+
+  if (loading) return <p>Loading posts...</p>;
+  if (error) return <p>Error: {error}</p>;
+  if (loadingDelivery) return <p>Loading posts...</p>;
+  if (errorDelivery) return <p>Error: {error}</p>;
 
   return (
     <section className="max-w-xl mx-auto p-4 items-center justify-center">
@@ -101,7 +118,6 @@ export default function Orderdeails({
             <div className="flex justify-between items-center mb-2">
               <span>Shipping:</span>
               <span>{shippingCost.display}</span>
-              {console.log(shippingCost)}
             </div>
           </div>
           <hr className="my-2" />
