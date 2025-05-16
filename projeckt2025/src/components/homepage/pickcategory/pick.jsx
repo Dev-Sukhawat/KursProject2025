@@ -1,9 +1,13 @@
 import React from "react";
 // import { useState } from "react";
-import DataCategories from "../../../data/pick.json";
+import useFerch from "../../utils/useFerch";
 import { Link } from "react-router-dom";
 
 export default function Pick() {
+  const { data: DataCategories, loading, error } = useFerch("/api/pick");
+
+  if (loading) return <p>Loading posts...</p>;
+  if (error) return <p>Error: {error}</p>;
   return (
     <section className="ChooseCategory bg-gray-100 md:p-4 rounded-lg shadow-md mt-4 mb-4">
       <h1 className="text-2xl font-semibold text-center mb-2">
