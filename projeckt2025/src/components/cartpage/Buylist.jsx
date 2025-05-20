@@ -1,10 +1,7 @@
 import React from "react";
-// import useCart from "../utils/useCart.js";
 import { Link } from "react-router-dom";
 
-const BuyList = ({cartItems, removeFromCart}) => {
-  // const { cartItems, removeFromCart } = useCart();
-
+const BuyList = ({ cartItems, removeFromCart }) => {
   return (
     <section className="max-w-xl mx-auto p-4">
       <h2 className="text-xl font-semibold mb-4">Buy List</h2>
