@@ -11,7 +11,6 @@ import About from "./pages/about.jsx";
 import Support from "./pages/support.jsx";
 import Topics from "./pages/topics.jsx";
 import Category from "./pages/category.jsx";
-import Morph from "./pages/morph.jsx";
 import Underdeveloped from "./pages/underdeveloped.jsx";
 
 function App() {
@@ -25,7 +24,6 @@ function App() {
     <Route path="/sell" element={<Sell />} key="sell" />,
     <Route path="/about" element={<About />} key="about" />,
     <Route path="/support" element={<Support />} key="support" />,
-    <Route path="/morph" element={<Morph />} key="Morph" />,
     <Route
       path="/underdeveloped"
       element={<Underdeveloped />}

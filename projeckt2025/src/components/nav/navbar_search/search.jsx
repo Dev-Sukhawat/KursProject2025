@@ -1,4 +1,5 @@
 import { React, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import clsx from "clsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
@@ -6,27 +7,63 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
 
 export function NavbarSearch() {
+   const [query, setQuery] = useState("");
+  const navigate = useNavigate();
+
+  const handleSearch = () => {
+    if (query.trim()) {
+      console.log(query);
+      navigate(`/category/${encodeURIComponent(query.trim())}`);
+    }
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleSearch();
+    }
+  };
   return (
     <>
-      <div className="navbar__search gap-2 flex border-2 rounded-md">
-        <input
-          type="serch"
-          name="search"
-          id="search"
-          aria-label="Search"
-          placeholder="Search for..."
-          className="navbar__search-input w-full order-2"
-        />
-        <button className="navbar__search-button order-1">
-          <FontAwesomeIcon icon={faMagnifyingGlass} />
-        </button>
-      </div>
+    <div className="navbar__search gap-2 flex border-2 rounded-md">
+      <input
+        type="search"
+        name="search"
+        id="search"
+        aria-label="Search"
+        placeholder="Search for..."
+        className="navbar__search-input w-full order-2"
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+        onKeyDown={handleKeyDown}
+      />
+      <button
+        className="navbar__search-button order-1"
+        onClick={handleSearch}
+        type="button"
+      >
+        <FontAwesomeIcon icon={faMagnifyingGlass} />
+      </button>
+    </div>
     </>
   );
 }
 
 export function MdNavbarSearch() {
   const [ifChecked, setIfChecked] = useState(false);
+  const [query, setQuery] = useState("");
+  const navigate = useNavigate();
+
+    const handleSearch = () => {
+    if (query.trim()) {
+      navigate(`/category/${encodeURIComponent(query.trim())}`);
+    }
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleSearch();
+    }
+  };
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(min-width: 1024px)");
@@ -55,28 +92,33 @@ export function MdNavbarSearch() {
   return (
     <>
       <StyledWrapper>
+<div className={clsx("container", ifChecked ? "mb-8" : "mb-0")}>
+      <input
+        className="checkbox"
+        type="checkbox"
+        checked={ifChecked}
+        onChange={(e) => setIfChecked(e.target.checked)}
+      />
+      <div className="mainbox">
         <div
-          className={clsx(
-            "container",
-            ifChecked ? "mb-8" : "mb-0" // Tailwind-klasser
-          )}
+          className="iconContainer color-white cursor-pointer"
+          onClick={handleSearch}
         >
-          <input
-            className="checkbox"
-            type="checkbox"
-            checked={ifChecked}
-            onChange={(e) => setIfChecked(e.target.checked)}
+          <FontAwesomeIcon
+            icon={faMagnifyingGlass}
+            className="text-white"
           />
-          <div className="mainbox">
-            <div className="iconContainer color-white ">
-              <FontAwesomeIcon
-                icon={faMagnifyingGlass}
-                className="text-white "
-              />
-            </div>
-            <input className="search_input" placeholder="search" type="text" />
-          </div>
         </div>
+        <input
+          className="search_input"
+          placeholder="search"
+          type="text"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          onKeyDown={handleKeyDown}
+        />
+      </div>
+    </div>
       </StyledWrapper>
     </>
   );
