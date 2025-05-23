@@ -1,33 +1,40 @@
 const STORAGE_KEY = "cartItems";
 
+// Hämta allt från localStorage
 export function getCartItems() {
     return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
 }
 
-export function isInCart(id, productNumber) {
-    const cart = getCartItems();
-    return cart.some(item => item.id === id && item.productNumber === productNumber);
+// Kontrollera om en bild redan finns i kundvagnen (baserat på id)
+export function isInCart(id) {
+    return getCartItems().some(item => item.id === id);
 }
 
-export function addToCart(id, productNumber) {
+// Lägg till en bild i kundvagnen
+export function addToCart(imageData) {
     const cart = getCartItems();
-    if (!isInCart(id, productNumber)) {
-        cart.push({ id, productNumber });
+
+    if (!isInCart(imageData.id)) {
+        cart.push(imageData);
         localStorage.setItem(STORAGE_KEY, JSON.stringify(cart));
     }
 }
 
+// Ta bort en bild från kundvagnen (baserat på id)
 export function removeFromCart(id, productNumber) {
-    const cart = getCartItems().filter(
+    const updatedCart = getCartItems().filter(
         item => !(item.id === id && item.productNumber === productNumber)
     );
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(cart));
+    localStorage.setItem("cartItems", JSON.stringify(updatedCart));
 }
 
-export function toggleCartItem(id, productNumber) {
-    if (isInCart(id, productNumber)) {
-        removeFromCart(id, productNumber);
+// Lägg till eller ta bort beroende på om den redan finns
+export function toggleCartItem(imageData) {
+    console.log("tg", imageData.id);
+
+    if (isInCart(imageData.id)) {
+        removeFromCart(imageData.id);
     } else {
-        addToCart(id, productNumber);
+        addToCart(imageData);
     }
 }

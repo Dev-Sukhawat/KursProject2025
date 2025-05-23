@@ -18,6 +18,20 @@ export default function Check() {
   if (loading) return <p>Loading posts...</p>;
   if (error) return <p>Error: {error}</p>;
 
+  const handleAddToCart = (imageData) => {
+    toggleCartItem({
+      id: imageData.id,
+      productNumber: imageData.productNumber || imageData.id,
+      image: imageData.image || imageData.urls?.small,
+      title: imageData.title || imageData.alt_description || "No title",
+      description: imageData.description || "No description",
+      topics:
+        imageData.topics ||
+        (imageData.topic_submissions ? "Limited" : "Regular"),
+    });
+    setCartState(cartState + 1); // Om du vill trigga UI-uppdatering
+  };
+
   return (
     <section className="CheckTrends bg-gray-100 md:p-4 rounded-lg shadow-md mt-10 mb-4 justify-center">
       <h1 className="text-2xl md:text-3xl font-semibold text-center mb-2">
@@ -132,10 +146,7 @@ export default function Check() {
                 {isInCart(image.id, image.productNumber) && (
                   <button
                     className="absolute top-2 right-2 z-10 block"
-                    onClick={() => {
-                      toggleCartItem(image.id, image.productNumber);
-                      setCartState(cartState + 1);
-                    }}
+                    onClick={() => {handleAddToCart(image);}}
                   >
                     <FontAwesomeIcon
                       icon={faCartShopping}
@@ -148,10 +159,7 @@ export default function Check() {
                   className={`absolute top-2 right-2 z-9 hidden group-hover:block  ${
                     isInCart(image.id, image.productNumber) ? "hidden" : ""
                   }`}
-                  onClick={() => {
-                    toggleCartItem(image.id, image.productNumber);
-                    setCartState(cartState + 1);
-                  }}
+                  onClick={() => {handleAddToCart(image)}}
                 >
                   <FontAwesomeIcon
                     icon={faCartShopping}

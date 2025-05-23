@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-function useUnsplashApi(term = "", order = "relevant") {
+function useUnsplashApi(term = "", order = "relevant", searchId = "") {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -13,20 +13,36 @@ function useUnsplashApi(term = "", order = "relevant") {
             setLoading(true);
             setError(null);
 
-            const cleanedTerm = term
-                .split(/[,&]/)
-                .map((t) => t.trim().toLowerCase())
-                .filter((t) => t.length > 0)
-                .join(" ");
-
-            let url = `https://api.unsplash.com/search/photos?client_id=${apiKey}&per_page=30`;
-            if (cleanedTerm) url += `&query=${encodeURIComponent(cleanedTerm)}`;
-            if (order) url += `&order_by=${order}`;
-
             try {
-                const response = await axios.get(url);
-                console.log(response.data.results);
-                setData(response.data.results);
+                let response;
+
+                if (searchId) {
+                    console.log("fetching imgage with id");
+
+                    // Hämta en specifik bild med ID
+                    response = await axios.get(
+                        `https://api.unsplash.com/photos/${searchId}?client_id=${apiKey}`
+                    );
+                    setData(response.data); // Enskild bild
+                } else if (term) {
+            // Sök efter bilder med term
+                    const cleanedTerm = term
+                        .split(/[,&]/)
+                        .map((t) => t.trim().toLowerCase())
+                        .filter((t) => t.length > 0)
+                        .join(" ");
+
+                    response = await axios.get(
+                        `https://api.unsplash.com/search/photos?client_id=${apiKey}&query=${encodeURIComponent(
+                            cleanedTerm
+                        )}&order_by=${order}&per_page=30`
+                    );
+                    // console.log(response.data.results);
+
+                    setData(response.data.results); // Lista av bilder
+                } else {
+                    setData(null);
+                }
             } catch (err) {
                 setError(err.response?.data?.errors?.[0] || "Något gick fel");
             } finally {
@@ -37,7 +53,7 @@ function useUnsplashApi(term = "", order = "relevant") {
         if (term) {
             fetchUnsplash();
         }
-    }, [term, order]);
+    }, [term, order, searchId]);
 
     return { data, loading, error };
 }

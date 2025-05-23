@@ -19,7 +19,19 @@ function Category() {
   // Om list saknas, sök på "all"
   const searchTerm = list || "all";
 
-  const { data: images, loading, error } = useUnsplashApi(searchTerm, 15);
+  const { data: images, loading, error } = useUnsplashApi(searchTerm);
+
+  const handleAddToCart = (imageData) => {
+    toggleCartItem({
+      id: imageData.id,
+      productNumber: imageData.productNumber || imageData.id,
+      image: imageData.image || imageData.urls?.small,
+      title: imageData.title || imageData.alt_description || "No title",
+      description: imageData.description || "No description",
+      topics: imageData.topic_submissions ? "Limited" : "Regular",
+    });
+    setCartState(cartState + 1); // Om du vill trigga UI-uppdatering
+  };
 
   return (
     <>
@@ -79,8 +91,7 @@ function Category() {
                   <button
                     className="absolute top-2 right-2 z-10 block"
                     onClick={() => {
-                      toggleCartItem(image.id, image.id);
-                      setCartState(cartState + 1);
+                      handleAddToCart(image);
                     }}
                   >
                     <FontAwesomeIcon
@@ -95,8 +106,7 @@ function Category() {
                     isInCart(image.id, image.id) ? "hidden" : ""
                   }`}
                   onClick={() => {
-                    toggleCartItem(image.id, image.id);
-                    setCartState(cartState + 1);
+                    handleAddToCart(image);
                   }}
                 >
                   <FontAwesomeIcon

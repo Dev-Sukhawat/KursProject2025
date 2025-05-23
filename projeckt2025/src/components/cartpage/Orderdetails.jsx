@@ -96,7 +96,7 @@ export default function Orderdeails({
               {cartItems.map((item) => (
                 <li key={item.id} className="mb-2">
                   <div className="grid justify-items-center">
-                    <span>No.{item.id}</span>
+                    <span>SKU.{item.id}</span>
                     <span className="text-lg">
                       {item.topics?.toLowerCase() === "limited"
                         ? "299kr"

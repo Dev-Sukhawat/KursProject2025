@@ -33,7 +33,7 @@ export default function OrderSummary({ cartItems, shippingCost }) {
           {/* Info Block */}
           <div className="flex-1">
             <div className="flex justify-between font-medium">
-              <h3 className="font-semibold">MetalMorph: No{item.id}.</h3>
+              <h3 className="font-semibold">MetalMorph: SKU{item.id}.</h3>
               <span className="whitespace-nowrap">
                 {item.topics?.toLowerCase() === "limited" ? "299 kr" : "399 kr"}
               </span>
