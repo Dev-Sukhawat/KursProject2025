@@ -13,8 +13,8 @@ export default function Navbar() {
   };
 
   return (
-    <section className="navbar-container">
-      <nav className="navbar md:hidden mt-1 bg-white shadow-md p-2 ">
+    <section className="navbar-container sticky -top-5 lg:-top-10 z-20 w-full bg-white">
+      <nav className="navbar md:hidden bg-white shadow-md p-2 ">
         <div className="flex w-full justify-between items-center md:hidden">
           <Checkbox onClick={toggleMenu} />
           {showSubmenu && <Submenu setShowSubmenu={setShowSubmenu} />}

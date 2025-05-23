@@ -22,7 +22,7 @@ function Submenu({ setShowSubmenu }) {
   };
 
   return (
-    <div className="submenu-wrapper absolute z-100 size-full top-30 left-0 bg-white  shadow-md sm:top-33 lg:top-40 md:text-lg md:mt-3 lg:mt-4">
+    <div className="submenu-wrapper absolute z-100 size-full h-screen top-30 left-0 bg-white shadow-md sm:top-33 lg:top-40 md:text-lg md:mt-3 lg:mt-4">
       <div className="text-red flex items-center justify-center gap-2 mb-2 text-xl ">
         <h1>
           <Link to="/underdeveloped" className="login">
@@ -36,7 +36,7 @@ function Submenu({ setShowSubmenu }) {
           </Link>
         </h1>
       </div>
-      <ul className="navbar__links grid">
+      <ul className="navbar__links grid bg-white">
         <li>
           <Link to="/" className="navbar__link font-bold">
             Home
