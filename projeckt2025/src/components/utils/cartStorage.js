@@ -22,6 +22,7 @@ export function addToCart(imageData) {
 
 // Ta bort en bild från kundvagnen (baserat på id)
 export function removeFromCart(id, productNumber) {
+
     const updatedCart = getCartItems().filter(
         item => !(item.id === id && item.productNumber === productNumber)
     );
@@ -30,10 +31,9 @@ export function removeFromCart(id, productNumber) {
 
 // Lägg till eller ta bort beroende på om den redan finns
 export function toggleCartItem(imageData) {
-    console.log("tg", imageData.id);
 
     if (isInCart(imageData.id)) {
-        removeFromCart(imageData.id);
+        removeFromCart(imageData.id, imageData.productNumber);
     } else {
         addToCart(imageData);
     }

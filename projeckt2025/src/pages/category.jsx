@@ -28,7 +28,9 @@ function Category() {
       image: imageData.image || imageData.urls?.small,
       title: imageData.title || imageData.alt_description || "No title",
       description: imageData.description || "No description",
-      topics: imageData.topic_submissions ? "Limited" : "Regular",
+      topics:
+        imageData.topics ||
+        (imageData.topic_submissions ? "Limited" : "Regular"),
     });
     setCartState(cartState + 1); // Om du vill trigga UI-uppdatering
   };

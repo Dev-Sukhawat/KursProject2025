@@ -25,12 +25,11 @@ export default function Check() {
       image: imageData.image || imageData.urls?.small,
       title: imageData.title || imageData.alt_description || "No title",
       description: imageData.description || "No description",
-      topics:
-        imageData.topics ||
-        (imageData.topic_submissions ? "Limited" : "Regular"),
+      topics: imageData.topic_submissions ? "Limited" : "Regular",
     });
     setCartState(cartState + 1); // Om du vill trigga UI-uppdatering
   };
+  
 
   return (
     <section className="CheckTrends bg-gray-100 md:p-4 rounded-lg shadow-md mt-10 mb-4 justify-center">
@@ -146,7 +145,7 @@ export default function Check() {
                 {isInCart(image.id, image.productNumber) && (
                   <button
                     className="absolute top-2 right-2 z-10 block"
-                    onClick={() => {handleAddToCart(image);}}
+                    onClick={() => {handleAddToCart(image)}}
                   >
                     <FontAwesomeIcon
                       icon={faCartShopping}

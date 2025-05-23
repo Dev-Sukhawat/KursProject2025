@@ -17,6 +17,7 @@ const useCart = () => {
         const stored = localStorage.getItem("cartItems");
         if (!stored) return;
 
+
         const cartData = JSON.parse(stored);
 
         const updatedCart = cartData.filter(
@@ -27,6 +28,7 @@ const useCart = () => {
         localStorage.setItem("cartItems", JSON.stringify(updatedCart));
         loadCart();
     };
+
 
     return {
         cartItems,

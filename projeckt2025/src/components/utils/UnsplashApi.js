@@ -17,15 +17,13 @@ function useUnsplashApi(term = "", order = "relevant", searchId = "") {
                 let response;
 
                 if (searchId) {
-                    console.log("fetching imgage with id");
-
-                    // Hämta en specifik bild med ID
+                    // Hämta en enskild bild via ID
                     response = await axios.get(
                         `https://api.unsplash.com/photos/${searchId}?client_id=${apiKey}`
                     );
-                    setData(response.data); // Enskild bild
-                } else if (term) {
-            // Sök efter bilder med term
+                    setData(response.data); // en bild (objekt)
+                } else if (term.trim() !== "") {
+                    // Sök efter bilder med sökterm och order
                     const cleanedTerm = term
                         .split(/[,&]/)
                         .map((t) => t.trim().toLowerCase())
@@ -37,11 +35,14 @@ function useUnsplashApi(term = "", order = "relevant", searchId = "") {
                             cleanedTerm
                         )}&order_by=${order}&per_page=30`
                     );
-                    // console.log(response.data.results);
 
-                    setData(response.data.results); // Lista av bilder
+                    setData(response.data.results); // lista av bilder
                 } else {
-                    setData(null);
+                    // Inget sökord, hämta senaste bilder med order (t.ex. latest)
+                    response = await axios.get(
+                        `https://api.unsplash.com/photos?client_id=${apiKey}&order_by=${order}&per_page=30`
+                    );
+                    setData(response.data); // lista av bilder
                 }
             } catch (err) {
                 setError(err.response?.data?.errors?.[0] || "Något gick fel");
