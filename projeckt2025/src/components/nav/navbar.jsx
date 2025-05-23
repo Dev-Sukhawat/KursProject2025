@@ -17,7 +17,7 @@ export default function Navbar() {
       <nav className="navbar md:hidden mt-1 bg-white shadow-md p-2 ">
         <div className="flex w-full justify-between items-center md:hidden">
           <Checkbox onClick={toggleMenu} />
-          {showSubmenu && <Submenu />}
+          {showSubmenu && <Submenu setShowSubmenu={setShowSubmenu} />}
           <NavbarLogo />
           <NavbarBtn />
         </div>
@@ -26,7 +26,7 @@ export default function Navbar() {
       <nav className="navbar hidden md:block shadow-md md:mt-2 md:p-4 lg:mt-3 lg:p-6 flex gap-2 md:gap-4 lg:gap-6 ">
         <div className="hidden md:grid md:grid-cols-3 w-full md:gap-10 justify-center items-center ">
           <Checkbox onClick={toggleMenu} />
-          {showSubmenu && <Submenu />}
+          {showSubmenu && <Submenu setShowSubmenu={setShowSubmenu} />}
           <NavbarLogo />
           <NavbarBtn />
         </div>

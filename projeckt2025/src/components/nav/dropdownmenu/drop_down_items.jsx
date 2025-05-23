@@ -3,7 +3,7 @@ import "./drop_down_items.css";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
-function Submenu() {
+function Submenu({ setShowSubmenu }) {
   const categoryslistboarditem = [
     { id: 1, list: "Anime" },
     { id: 2, list: "Gaming & Fantasy" },
@@ -16,6 +16,10 @@ function Submenu() {
     { id: 3, list: "Limited" },
     { id: 4, list: "Inspirations" },
   ];
+
+  const closeMenu = () => {
+    setShowSubmenu(false);
+  };
 
   return (
     <div className="submenu-wrapper absolute z-100 size-full top-30 left-0 bg-white  shadow-md sm:top-33 lg:top-40 md:text-lg md:mt-3 lg:mt-4">
@@ -52,7 +56,10 @@ function Submenu() {
             <ul className="submenu__topics grid gap-2 w-[98%]">
               {topicslistboarditem.map((item) => (
                 <li key={item.id}>
-                  <Link to={`/topics/${item.list.replace(/\s+/g, "")}`}>
+                  <Link
+                    to={`/topics/${item.list.replace(/\s+/g, "")}`}
+                    onClick={closeMenu}
+                  >
                     {item.list}
                   </Link>
                 </li>
@@ -74,7 +81,10 @@ function Submenu() {
             <ul className="submenu__category grid gap-2 w-[98%]">
               {categoryslistboarditem.map((item) => (
                 <li key={item.id}>
-                  <Link to={`/category/${item.list.replace(/\s+/g, "")}`}>
+                  <Link
+                    to={`/category/${item.list.replace(/\s+/g, "")}`}
+                    onClick={closeMenu}
+                  >
                     {item.list}
                   </Link>
                 </li>
