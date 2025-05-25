@@ -8,31 +8,50 @@ import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { toggleLikeImage, isImageLiked } from "../../utils/likeStorage.js";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { toggleCartItem, isInCart } from "../../utils/cartStorage.js";
+import  CardModal from "../../card/card.jsx"
 
 export default function Check() {
   const [selected, setSelected] = useState("sell");
   const [likedState, setLikedState] = useState(0);
   const [cartState, setCartState] = useState(0);
   const { data: Data, loading, error } = useFetch("/api/data", DataBackUp);
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   if (loading) return <p>Loading posts...</p>;
   if (error) return <p>Error: {error}</p>;
 
   const handleAddToCart = (imageData) => {
+    // console.log(imageData);
     toggleCartItem({
       id: imageData.id,
       productNumber: imageData.productNumber || imageData.id,
       image: imageData.image || imageData.urls?.small,
       title: imageData.title || imageData.alt_description || "No title",
-      description: imageData.description || "No description",
-      topics: imageData.topic_submissions ? "Limited" : "Regular",
+      descriptionCard: imageData.descriptionCard,
+      quantity: imageData.quantity,
+      priceToAdd: imageData.priceToAdd,
+      topics:
+        imageData.topics?.toLowerCase() === "limited" ||
+        imageData.topic_submissions
+          ? "Limited"
+          : "Regular",
     });
     setCartState(cartState + 1); // Om du vill trigga UI-uppdatering
   };
-  
+
+  const toggleModalCard = (image) => {
+    setSelectedImage(image);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedImage(null);
+  };
 
   return (
-    <section className="CheckTrends bg-gray-100 md:p-4 rounded-lg shadow-md mt-10 mb-4 justify-center">
+    <section className="CheckTrends bg-gray-100 rounded-lg shadow-md mt-10 mb-4 justify-center md:p-4">
       <h1 className="text-2xl md:text-3xl font-semibold text-center mb-2">
         Check out top trends!
       </h1>
@@ -114,7 +133,7 @@ export default function Check() {
               >
                 {isImageLiked(image.id, image.productNumber) && (
                   <button
-                    className="absolute  top-2 left-2 z-10 block"
+                    className="absolute  top-2 left-2 z-9 block"
                     onClick={() => {
                       toggleLikeImage(image.id, image.productNumber);
                       setLikedState(likedState + 1);
@@ -128,7 +147,7 @@ export default function Check() {
                 )}
 
                 <button
-                  className={`absolute top-2 left-2 z-9  hidden group-hover:block ${
+                  className={`absolute top-2 left-2 z-8  hidden group-hover:block ${
                     isImageLiked(image.id, image.productNumber) ? "hidden" : ""
                   }`}
                   onClick={() => {
@@ -144,8 +163,10 @@ export default function Check() {
 
                 {isInCart(image.id, image.productNumber) && (
                   <button
-                    className="absolute top-2 right-2 z-10 block"
-                    onClick={() => {handleAddToCart(image)}}
+                    className="absolute top-2 right-2 z-9 block"
+                    onClick={() => {
+                      handleAddToCart(image);
+                    }}
                   >
                     <FontAwesomeIcon
                       icon={faCartShopping}
@@ -155,10 +176,12 @@ export default function Check() {
                 )}
 
                 <button
-                  className={`absolute top-2 right-2 z-9 hidden group-hover:block  ${
+                  className={`absolute top-2 right-2 z-8 hidden group-hover:block  ${
                     isInCart(image.id, image.productNumber) ? "hidden" : ""
                   }`}
-                  onClick={() => {handleAddToCart(image)}}
+                  onClick={() => {
+                    handleAddToCart(image);
+                  }}
                 >
                   <FontAwesomeIcon
                     icon={faCartShopping}
@@ -167,12 +190,19 @@ export default function Check() {
                 </button>
 
                 <img
+                  onClick={() => toggleModalCard(image)}
                   src={image.image}
                   alt={image.alt}
-                  className="w-full h-auto object-cover"
+                  className="w-full cursor-pointer h-auto object-cover"
                 />
               </div>
             ))}
+            <CardModal
+              isOpen={isModalOpen}
+              image={selectedImage}
+              onClose={closeModal}
+              onAddToCart={handleAddToCart}
+            />
           </div>
         </div>
       </div>

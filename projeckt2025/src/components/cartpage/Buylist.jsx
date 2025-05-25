@@ -4,8 +4,6 @@ import Loader from "../btn/loader";
 import useUnsplashApi from "../utils/UnsplashApi";
 
 const BuyList = ({ cartItems, removeFromCart }) => {
-  console.log(removeFromCart);
-
   return (
     <section className="max-w-2xl mx-auto p-4">
       <h2 className="text-xl font-semibold mb-4">Buy List</h2>
@@ -28,6 +26,9 @@ const BuyItem = ({ item, removeFromCart }) => {
     loading,
     error,
   } = useUnsplashApi("", "relevant", item.id);
+
+  const quantity = Number(item.quantity || 1);
+  const priceToAdd = Number(item.priceToAdd || 0);
 
   return (
     <div className="flex gap-4 mb-6 items-start border-b pb-4">
@@ -55,8 +56,8 @@ const BuyItem = ({ item, removeFromCart }) => {
         <h3 className="font-semibold">MetalMorph: SKU.{item.id}</h3>
         <p>{item.title || "No title"}</p>
         <p className="text-sm text-gray-600">
-          {item.description || "No description"} <br />
-          Qty: 1; Style: Basic; Size: 45x32cm
+          {item.descriptionCard || "Qty: 1; Style: Classic; Size:M: 45x32cm"}{" "}
+          <br />
         </p>
         <Link to="/underdeveloped">
           <button className="text-sm text-blue-600 hover:underline mt-1">
@@ -73,7 +74,18 @@ const BuyItem = ({ item, removeFromCart }) => {
           🗑
         </button>
         <p className="text-lg font-semibold">
-          {item.topics?.toLowerCase() === "limited" ? "399kr" : "299kr"}
+          {item.quantity && item.priceToAdd != null
+            ? `${
+                item.quantity *
+                  (item.topics?.toLowerCase() === "limited" ||
+                  item.topic_submissions
+                    ? 399
+                    : 299) +
+                item.priceToAdd
+              }kr`
+            : item.topics?.toLowerCase() === "limited" || item.topic_submissions
+            ? "399kr"
+            : "299kr"}
         </p>
       </div>
     </div>

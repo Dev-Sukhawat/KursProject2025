@@ -1,7 +1,10 @@
 export default function OrderSummary({ cartItems, shippingCost }) {
   const totalItems = cartItems.length;
   const orderTotal = cartItems.reduce((sum, item) => {
-    const price = item.topics?.toLowerCase() === "limited" ? 299 : 399;
+    const price =
+      item.topics?.toLowerCase() === "limited"
+        ? item.quantity * 399 + item.priceToAdd
+        : item.quantity * 299 + item.priceToAdd;
     return sum + price;
   }, 0);
 
@@ -35,12 +38,12 @@ export default function OrderSummary({ cartItems, shippingCost }) {
             <div className="flex justify-between font-medium">
               <h3 className="font-semibold">MetalMorph: SKU{item.id}.</h3>
               <span className="whitespace-nowrap">
-                {item.topics?.toLowerCase() === "limited" ? "299 kr" : "399 kr"}
+                {item.topics?.toLowerCase() === "limited"
+                  ? `${item.quantity * 399 + item.priceToAdd}kr`
+                  : `${item.quantity * 299 + item.priceToAdd}kr`}
               </span>
             </div>
-            <p className="text-sm text-gray-600">
-              {item.description} Qty: 1; Style: Basic; Size: 45x32cm
-            </p>
+            <p className="text-sm text-gray-600">{item.description}</p>
           </div>
         </div>
       ))}

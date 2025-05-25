@@ -7,6 +7,7 @@ const CustomDropdown = ({
   options,
   defaultLabel = "Select option",
   onChange,
+  dropdownClassName = "",
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState(defaultLabel);
@@ -42,7 +43,7 @@ const CustomDropdown = ({
         />
       </div>
       {isOpen && (
-        <div className="-left-[120%] options columns-3 gap-0">
+        <div className={`options ${dropdownClassName || ""}`}>
           {options.map((opt) => (
             <div
               key={opt.value}

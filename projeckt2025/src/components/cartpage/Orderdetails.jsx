@@ -17,7 +17,10 @@ export default function Orderdeails({
   shippingCost,
 }) {
   const orderTotal = cartItems.reduce((sum, item) => {
-    const price = item.topics?.toLowerCase() === "limited" ? 299 : 399;
+    const price =
+      item.topics?.toLowerCase() === "limited"
+        ? item.quantity * 399 + item.priceToAdd
+        : item.quantity * 299 + item.priceToAdd;
     return sum + price;
   }, 0);
 
@@ -87,6 +90,7 @@ export default function Orderdeails({
               options={EuropeCountries}
               required
               onChange={handleCountryChange}
+              dropdownClassName="-left-[120%]  columns-3 gap-0"
             />
           </div>
           {/* Item total */}
@@ -99,8 +103,8 @@ export default function Orderdeails({
                     <span>SKU.{item.id}</span>
                     <span className="text-lg">
                       {item.topics?.toLowerCase() === "limited"
-                        ? "299kr"
-                        : "399kr"}
+                        ? `${item.quantity * 399 + item.priceToAdd}kr`
+                        : `${item.quantity * 299 + item.priceToAdd}kr`}
                     </span>
                   </div>
                   <hr />
@@ -115,6 +119,7 @@ export default function Orderdeails({
                 options={DeliveryOptions}
                 required
                 onChange={handleDeliveryChange}
+                dropdownClassName="-left-[120%] options columns-3 gap-0"
               />
             </div>
             <div className="flex justify-between items-center mb-2">
