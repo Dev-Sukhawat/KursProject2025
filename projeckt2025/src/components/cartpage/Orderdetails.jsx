@@ -17,10 +17,13 @@ export default function Orderdeails({
   shippingCost,
 }) {
   const orderTotal = cartItems.reduce((sum, item) => {
-    const price =
-      item.topics?.toLowerCase() === "limited"
-        ? item.quantity * 399 + item.priceToAdd
-        : item.quantity * 299 + item.priceToAdd;
+    const quantity = parseInt(item.quantity) || 1;
+    const priceToAdd = parseInt(item.priceToAdd) || 0;
+    const isLimited = item.topics?.toLowerCase() === "limited";
+
+    const basePrice = isLimited ? 399 : 299;
+    const price = quantity * basePrice + priceToAdd;
+
     return sum + price;
   }, 0);
 
@@ -97,19 +100,28 @@ export default function Orderdeails({
           <div className="grid grid-flow-col justify-between items-start mb-2">
             <span className="">Item total:</span>
             <ul>
-              {cartItems.map((item) => (
-                <li key={item.id} className="mb-2">
-                  <div className="grid justify-items-center">
-                    <span>SKU.{item.id}</span>
-                    <span className="text-lg">
-                      {item.topics?.toLowerCase() === "limited"
-                        ? `${item.quantity * 399 + item.priceToAdd}kr`
-                        : `${item.quantity * 299 + item.priceToAdd}kr`}
-                    </span>
-                  </div>
-                  <hr />
-                </li>
-              ))}
+              {cartItems.map((item) => {
+                const isEmpty = item.priceToAdd === "" && item.quantity === "";
+                const isLimited = item.topics?.toLowerCase() === "limited";
+
+                const basePrice = isLimited ? 399 : 299;
+                const quantity = parseInt(item.quantity) || 1;
+                const priceToAdd = parseInt(item.priceToAdd) || 0;
+
+                const displayPrice = isEmpty
+                  ? `${basePrice}kr`
+                  : `${quantity * basePrice + priceToAdd}kr`;
+
+                return (
+                  <li key={item.id} className="mb-2">
+                    <div className="grid justify-items-center">
+                      <span>SKU.{item.id}</span>
+                      <span className="text-lg">{displayPrice}</span>
+                    </div>
+                    <hr />
+                  </li>
+                );
+              })}
             </ul>
           </div>
           <div>
