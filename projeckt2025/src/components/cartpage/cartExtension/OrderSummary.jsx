@@ -1,10 +1,13 @@
 export default function OrderSummary({ cartItems, shippingCost }) {
   const totalItems = cartItems.length;
   const orderTotal = cartItems.reduce((sum, item) => {
-    const price =
-      item.topics?.toLowerCase() === "limited"
-        ? item.quantity * 399 + item.priceToAdd
-        : item.quantity * 299 + item.priceToAdd;
+    const quantity = parseInt(item.quantity) || 1;
+    const priceToAdd = parseInt(item.priceToAdd) || 0;
+    const isLimited = item.topics?.toLowerCase() === "limited";
+
+    const basePrice = isLimited ? 399 : 299;
+    const price = quantity * basePrice + priceToAdd;
+
     return sum + price;
   }, 0);
 
@@ -21,32 +24,35 @@ export default function OrderSummary({ cartItems, shippingCost }) {
       </div>
 
       {/* Item Info */}
-      {cartItems.map((item) => (
-        <div
-          key={item.productNumber}
-          className="flex gap-4 mb-6 items-start border-b pb-4"
-        >
-          {/* Image */}
-          <img
-            src={item.image}
-            alt={item.title}
-            className="w-20 h-20 object-cover rounded"
-          />
+      {cartItems.map((item) => {
+        const quantity = parseInt(item.quantity) || 1;
+        const priceToAdd = parseInt(item.priceToAdd) || 0;
+        const isLimited = item.topics?.toLowerCase() === "limited";
+        const price = quantity * (isLimited ? 399 : 299) + priceToAdd;
 
-          {/* Info Block */}
-          <div className="flex-1">
-            <div className="flex justify-between font-medium">
-              <h3 className="font-semibold">MetalMorph: SKU{item.id}.</h3>
-              <span className="whitespace-nowrap">
-                {item.topics?.toLowerCase() === "limited"
-                  ? `${item.quantity * 399 + item.priceToAdd}kr`
-                  : `${item.quantity * 299 + item.priceToAdd}kr`}
-              </span>
+        return (
+          <div
+            key={item.productNumber}
+            className="flex gap-4 mb-6 items-start border-b pb-4"
+          >
+            {/* Image */}
+            <img
+              src={item.image}
+              alt={item.title}
+              className="w-20 h-20 object-cover rounded"
+            />
+
+            {/* Info Block */}
+            <div className="flex-1">
+              <div className="flex justify-between font-medium">
+                <h3 className="font-semibold">MetalMorph: SKU{item.id}.</h3>
+                <span className="whitespace-nowrap">{price}kr</span>
+              </div>
+              <p className="text-sm text-gray-600">{item.description}</p>
             </div>
-            <p className="text-sm text-gray-600">{item.description}</p>
           </div>
-        </div>
-      ))}
+        );
+      })}
 
       {/* Shipping */}
       <div className="flex justify-between py-1 border-b font-medium">
