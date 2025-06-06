@@ -9,11 +9,14 @@ import { toggleLikeImage, isImageLiked } from "../components/utils/likeStorage";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { toggleCartItem, isInCart } from "../components/utils/cartStorage";
 import Loader from "../components/btn/loader";
+import CardModal from "../components/card/card";
 
 function Topics() {
   const { list } = useParams();
   const [likedState, setLikedState] = useState(0);
   const [cartState, setCartState] = useState(0);
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   let order = "";
   let searchTerm = "";
@@ -37,14 +40,30 @@ function Topics() {
 
   const { data: images, loading, error } = useUnsplashApi(searchTerm, order);
 
+  const toggleModalCard = (image) => {
+    setSelectedImage(image);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedImage(null);
+  };
+
   const handleAddToCart = (imageData) => {
     toggleCartItem({
       id: imageData.id,
       productNumber: imageData.productNumber || imageData.id,
       image: imageData.image || imageData.urls?.small,
       title: imageData.title || imageData.alt_description || "No title",
-      description: imageData.description || "No description",
-      topics: imageData.topic_submissions ? "Limited" : "Regular",
+      descriptionCard: imageData.descriptionCard,
+      quantity: imageData.quantity,
+      priceToAdd: imageData.priceToAdd,
+      topics:
+        imageData.topics?.toLowerCase() === "limited" ||
+        imageData.topic_submissions
+          ? "Limited"
+          : "Regular",
     });
     setCartState(cartState + 1); // Om du vill trigga UI-uppdatering
   };
@@ -132,12 +151,19 @@ function Topics() {
                 </button>
 
                 <img
+                  onClick={() => toggleModalCard(image)}
                   src={image.urls.small}
                   alt={image.alt_description || "Unsplash image"}
-                  className="w-full h-auto object-cover"
+                  className="w-full cursor-pointer h-auto object-cover"
                 />
               </div>
             ))}
+            <CardModal
+              isOpen={isModalOpen}
+              image={selectedImage}
+              onClose={closeModal}
+              onAddToCart={handleAddToCart}
+            />
           </div>
         </div>
       </section>
