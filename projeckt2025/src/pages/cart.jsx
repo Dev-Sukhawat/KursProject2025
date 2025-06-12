@@ -4,10 +4,14 @@ import { BuyNavbar } from "../components/nav/Navbar.jsx";
 import Buylist from "../components/cartpage/Buylist.jsx";
 import Orderdetails from "../components/cartpage/Orderdetails.jsx";
 import CartExtension from "../components/cartpage/cartExtension/CartExtension.jsx";
-
 import Footer from "../components/footer/Footer.jsx";
+import { useEffect } from "react";
+import { AlwaysScrollToTop } from "../components/utils/AlwaysScrollToTop";
 
 function Cart({ setSelectedDelivery }) {
+  useEffect(() => {
+    AlwaysScrollToTop();
+  }, []);
   const { cartItems, removeFromCart } = useCart();
   const [isCheckingOut, setIsCheckingOut] = useState(false);
   const [selectedCountry, setSelectedCountry] = useState("");

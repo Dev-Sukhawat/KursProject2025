@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import Navbar from "../components/nav/navbar";
+import Navbar from "../components/nav/Navbar";
 import Footer from "../components/footer/Footer";
 import useUnsplashApi from "../components/utils/UnsplashApi";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,8 +10,13 @@ import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { toggleCartItem, isInCart } from "../components/utils/cartStorage";
 import Loader from "../components/btn/loader";
 import CardModal from "../components/card/card";
+import { useEffect } from "react";
+import { AlwaysScrollToTop } from "../components/utils/AlwaysScrollToTop";
 
 function Topics() {
+  useEffect(() => {
+    AlwaysScrollToTop();
+  });
   const { list } = useParams();
   const [likedState, setLikedState] = useState(0);
   const [cartState, setCartState] = useState(0);

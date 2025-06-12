@@ -4,8 +4,13 @@ import styled from "styled-components";
 import Navbar from "../components/nav/Navbar";
 import GoBackButton from "../components/btn/GoBackButton";
 import Footer from "../components/footer/Footer";
+import { useEffect } from "react";
+import { AlwaysScrollToTop } from "../components/utils/AlwaysScrollToTop";
 
 const NoPage = () => {
+  useEffect(() => {
+    AlwaysScrollToTop();
+  });
   return (
     <>
       <Navbar />

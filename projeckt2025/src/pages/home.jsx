@@ -8,8 +8,13 @@ import Yourstyle from "../components/homepage/your/YourStyle";
 import Delivery from "../components/homepage/delivery/Delivery";
 import Payment from "../components/homepage/payment/Pay";
 import Footer from "../components/footer/Footer";
+import { useEffect } from "react";
+import { AlwaysScrollToTop } from "../components/utils/AlwaysScrollToTop";
 
-function home() {
+function Home() {
+  useEffect(() => {
+    AlwaysScrollToTop();
+  });
   return (
     <>
       <Navbar />
@@ -25,4 +30,4 @@ function home() {
   );
 }
 
-export default home;
+export default Home;
