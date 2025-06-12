@@ -6,7 +6,8 @@ import FakeSwishPay from "../../btn/Swish";
 import FakeKlarnaPay from "../../btn/Klarna";
 import PaymentForm from "./PaymentForm";
 
-export default function PaymentMethod({ formValid }) {
+// Tar emot ref som prop
+export default function PaymentMethod({ formValid, paymentMethodRef }) {
   const navigate = useNavigate();
 
   const [paymentMethod, setPaymentMethod] = useState("card");
@@ -14,7 +15,10 @@ export default function PaymentMethod({ formValid }) {
     <>
       {formValid && (
         <section className="max-w-xl mt-10 mx-auto p-4 rounded bg-gray-100 shadow-sm">
-          <h2 className="text-center text-xl font-semibold mb-4">
+          <h2
+            className="text-center text-xl font-semibold mb-4"
+            ref={paymentMethodRef}
+          >
             Choose Payment Method
           </h2>
           <PaymnetIcons />

@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import ShippingAddress from "./ShippingAddress";
 import OrderSummary from "./OrderSummary";
 import PaymentMethod from "./PaymentMethod";
+import { AlwaysScrollToTop } from "../../utils/AlwaysScrollToTop";
 
 export default function CartExtension({
   selectedCountry,
@@ -10,6 +11,10 @@ export default function CartExtension({
   setSelectedDelivery,
   shippingCost,
 }) {
+  useEffect(() => {
+    AlwaysScrollToTop();
+  }, []);
+
   const [formValid, setFormValid] = useState(false);
   const [formData, setFormData] = useState({
     firstName: "",
@@ -21,6 +26,16 @@ export default function CartExtension({
     state: "",
     contactPhone: "",
   });
+
+  const paymentRef = useRef(null);
+
+  // Scrolla till PaymentMethod när formuläret är godkänt
+  useEffect(() => {
+    if (formValid && paymentRef.current) {
+      paymentRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [formValid]);
+
   return (
     <section className="CartExtension">
       <ShippingAddress
@@ -39,6 +54,7 @@ export default function CartExtension({
         cartItems={cartItems}
         setSelectedDelivery={setSelectedDelivery}
         formValid={formValid}
+        paymentMethodRef={paymentRef}
       />
     </section>
   );
