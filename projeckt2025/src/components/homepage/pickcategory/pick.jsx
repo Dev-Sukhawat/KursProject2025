@@ -16,7 +16,7 @@ export default function Pick() {
       </h1>
       <span className="flex flex-col items-center mb-4">
         <Link
-          to="/morph"
+          to="/underdeveloped"
           className="text-center text-blue-600 mb-4 cursor-pointer hover:underline"
         >
           See all Category

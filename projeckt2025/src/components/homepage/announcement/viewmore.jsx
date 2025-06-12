@@ -6,7 +6,7 @@ const Button = () => {
     <section className="showbtn relative flex items-center justify-center">
       <StyledWrapper>
         <button className="hover:cursor-pointer">
-          <Link to={`/morph`}>
+          <Link to={`/underdeveloped`}>
             <span>View more</span>
           </Link>
         </button>
