@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+const apiKey = "Mkk4gboxBbqf8zQrKPpcKmqwAebsgr9i2opNNycAHb4";
 
 function useUnsplashApi(term = "", order = "relevant", searchId = "") {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    const apiKey = "Mkk4gboxBbqf8zQrKPpcKmqwAebsgr9i2opNNycAHb4"; // ersätt med din riktiga Unsplash Access Key
+    // ersätt med din riktiga Unsplash Access Key
 
     useEffect(() => {
         const fetchUnsplash = async () => {
@@ -57,6 +58,24 @@ function useUnsplashApi(term = "", order = "relevant", searchId = "") {
     }, [term, order, searchId]);
 
     return { data, loading, error };
+}
+
+export async function fetchUnsplashImagesByIds(ids = []) {
+    const results = await Promise.all(
+        ids.map(async (id) => {
+            try {
+                const res = await axios.get(
+                    `https://api.unsplash.com/photos/${id}?client_id=${apiKey}`
+                );
+                return { id, data: res.data };
+            } catch (err) {
+                console.error(`Misslyckades att hämta bild med ID ${id}`, err);
+                return null;
+            }
+        })
+    );
+
+    return results.filter(Boolean); // Ta bort ev. null från misslyckade fetches
 }
 
 export default useUnsplashApi;

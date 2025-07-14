@@ -29,7 +29,7 @@ export default function Btn() {
         </li>
         <li>
           <Link
-            to="/underdeveloped"
+            to="/likes"
             className="navbar__icon-link grid place-items-center md:gap-1"
           >
             <FontAwesomeIcon

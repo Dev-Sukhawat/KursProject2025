@@ -27,8 +27,8 @@ const BuyItem = ({ item, removeFromCart }) => {
     error,
   } = useUnsplashApi("", "relevant", item.id);
 
-  const quantity = Number(item.quantity || 1);
-  const priceToAdd = Number(item.priceToAdd || 0);
+  // const quantity = Number(item.quantity || 1);
+  // const priceToAdd = Number(item.priceToAdd || 0);
 
   return (
     <div className="flex gap-4 mb-6 items-start border-b pb-4">
