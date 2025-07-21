@@ -47,7 +47,6 @@ export default function LikeSection() {
       const match = Data.find(
         (img) => img.id === id && img.productNumber === productNumber
       );
-      console.log(match);
 
       if (match) {
         localLikes.push(match);
@@ -90,9 +89,9 @@ export default function LikeSection() {
   }, [Data, likedState, dataMap]);
 
   const filteredImages = useMemo(() => {
-    if (selected === "new") {
+    if (selected === "old") {
       return likedImages;
-    } else if (selected === "old") {
+    } else if (selected === "new") {
       return [...likedImages].reverse();
     }
     return likedImages;
@@ -108,6 +107,8 @@ export default function LikeSection() {
     setSelectedImage(null);
   };
 
+  const likedCount = getLikedImages().length;
+
   const handleAddToCart = (imageData) => {
     toggleCartItem({
       id: imageData.id,
@@ -118,7 +119,8 @@ export default function LikeSection() {
       quantity: imageData.quantity,
       priceToAdd: imageData.priceToAdd,
       topics:
-        imageData.topics?.toLowerCase() === "limited" ||
+        (imageData.topics &&
+          Object.keys(imageData.topics).includes("limited")) ||
         imageData.topic_submissions
           ? "Limited"
           : "Regular",
@@ -139,7 +141,9 @@ export default function LikeSection() {
     <section className="CheckTrends grid bg-gray-100 md:p-4 rounded-lg shadow-md mt-10 mb-4 justify-center">
       <div className="container">
         <h1 className="text-2xl md:text-3xl font-semibold text-center mb-2">
-          Your liked images
+          {likedCount === 0
+            ? "You have no liked images"
+            : `You have liked ${likedCount} image${likedCount > 1 ? "s" : ""}`}
         </h1>
 
         {/* Toggle between old/new likes */}
