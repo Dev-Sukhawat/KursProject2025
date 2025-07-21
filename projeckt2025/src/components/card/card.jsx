@@ -39,7 +39,7 @@ const Card = ({ isOpen, image, onClose, onAddToCart }) => {
 
   return (
     <div
-      className="fixed inset-0 z-20 flex items-start max-w-screen justify-center md:items-center md:z-9 md:pt-15"
+      className="fixed inset-0 z-20 flex items-start max-w-screen justify-center md:items-center md:z-10 md:pt-15"
       style={{ backgroundColor: "hsl(0deg 0% 100% / 86%)" }}
       onClick={handleOverlayClick}
     >
@@ -134,7 +134,8 @@ const Card = ({ isOpen, image, onClose, onAddToCart }) => {
                     Price <br />
                   </label>
                   <span className="text-lg text-black font-semibold">
-                    {image.topics?.toLowerCase() === "limited" ||
+                    {(image.topics &&
+                      Object.keys(image.topics).includes("limited")) ||
                     image.topic_submissions
                       ? `${
                           quantity * 399 +
