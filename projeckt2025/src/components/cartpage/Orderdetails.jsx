@@ -115,7 +115,13 @@ export default function Orderdeails({
                 return (
                   <li key={item.id} className="mb-2">
                     <div className="grid justify-items-center">
-                      <span>SKU.{item.id}</span>
+                      <div className="relative group inline-block cursor-pointer text-sm md:text-base">
+                        <div>SKU.{item.id}</div>
+                        <span className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-full mr-2 w-max px-2 py-1 text-xs text-white bg-black rounded shadow-lg opacity-0 group-hover:opacity-100 transition-opacity z-10 hidden sm:block">
+                          SKU: Stock Keeping Unit
+                        </span>
+                      </div>
+
                       <span className="text-lg">{displayPrice}</span>
                     </div>
                     <hr />
