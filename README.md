@@ -1,5 +1,6 @@
 <img width="1536" height="1024" alt="cbb90206-9346-4b1b-8dd4-eca3976ed4fe" src="https://github.com/user-attachments/assets/dd15b870-b87e-488f-a8f3-ed6e77481f75" />
-# 🛒 MetalMorph — React Webshop Project 2025
+
+# 🛒MetalMorph — React Webshop Project 2025
 
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/dev-sukhawat/kursproject2025?color=blueviolet)
